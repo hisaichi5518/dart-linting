@@ -1,0 +1,11 @@
+name: linting
+description: linting is a framework for creating custom linters using the analyzer_plugin.
+version: 1.0.0+1
+publish_to: none
+
+environment:
+  sdk: ">=2.13.0 <3.0.0"
+
+dev_dependencies:
+  test: ^1.17.0
+  lints: ^1.0.1
