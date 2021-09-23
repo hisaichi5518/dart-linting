@@ -1,7 +1,30 @@
-# See https://www.dartlang.org/guides/libraries/private-files
+.DS_Store
+.atom/
+.idea/
+.vscode/*
+!.vscode/tasks.json
+!.vscode/settings.json
 
-# Files and directories created by pub
-.dart_tool/
 .packages
-build/
+.pub/
+.dart_tool/
 pubspec.lock
+flutter_export_environment.sh
+
+*.iml
+
+.flutter-plugins
+.flutter-plugins-dependencies
+
+.project
+.classpath
+.settings
+.last_build_id
+
+
+# Misc
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+build/
