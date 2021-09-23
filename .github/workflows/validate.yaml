@@ -1,0 +1,41 @@
+name: all_packages
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: subosito/flutter-action@v1.5.3
+        with:
+          channel: stable
+      - run: flutter pub get
+      - run: melos run analyze
+
+  format:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v2
+      - uses: subosito/flutter-action@v1.5.3
+        with:
+          channel: stable
+      - run: flutter pub get
+      - run: melos run format
+
+  test_linux:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: subosito/flutter-action@v1.5.3
+        with:
+          channel: stable
+      - run: flutter pub get
+      - run: melos run test
