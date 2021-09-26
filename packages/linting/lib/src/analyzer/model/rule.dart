@@ -1,9 +1,9 @@
 import 'package:analyzer/dart/ast/ast.dart';
 import 'package:analyzer/dart/ast/syntactic_entity.dart';
 import 'package:analyzer/diagnostic/diagnostic.dart';
-import 'package:linting/src/linting_analyzer/model/internal_resolved_unit_result.dart';
-import 'package:linting/src/linting_analyzer/model/issue.dart';
-import 'package:linting/src/linting_analyzer/model/replacement.dart';
+import 'package:linting/src/analyzer/model/internal_resolved_unit_result.dart';
+import 'package:linting/src/analyzer/model/issue.dart';
+import 'package:linting/src/analyzer/model/replacement.dart';
 import 'package:source_span/source_span.dart';
 
 abstract class Rule {

@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:linting/src/linting_analyzer/model/rule.dart';
+import 'package:linting/src/analyzer/model/rule.dart';
 
 part 'analyzer_config.freezed.dart';
 
