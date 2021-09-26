@@ -13,6 +13,10 @@ scripts:
     run: melos exec -c 1 -- "dart analyze . --fatal-infos"
     description: Run dart analyzer in a specific package.
 
+  build_runner:
+    run: melos exec -c 1 -- "dart pub run build_runner build"
+    description: build runner
+
   test:
     description: Run tests in a specific package.
     run: melos exec --concurrency=1 -- "dart pub get && dart pub run test --reporter expanded"
