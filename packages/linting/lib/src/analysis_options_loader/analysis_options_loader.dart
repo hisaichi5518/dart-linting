@@ -13,7 +13,7 @@ class AnalysisOptions with _$AnalysisOptions {
 }
 
 class AnalysisOptionsLoader {
-  Future<AnalysisOptions> fromFile(File? file) async {
+  Future<AnalysisOptions> loadFromFile(File? file) async {
     if (file == null || !file.existsSync()) {
       return const AnalysisOptions(options: {});
     }
