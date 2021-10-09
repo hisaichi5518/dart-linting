@@ -9,3 +9,4 @@ export 'src/analyzer/model/internal_resolved_unit_result.dart';
 export 'src/analyzer/model/issue.dart';
 export 'src/analyzer/model/replacement.dart';
 export 'src/analyzer/model/rule.dart';
+export 'src/linting.dart';
