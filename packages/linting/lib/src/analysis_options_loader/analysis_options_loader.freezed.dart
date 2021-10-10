@@ -102,8 +102,8 @@ class __$AnalysisOptionsCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_AnalysisOptions implements _AnalysisOptions {
-  const _$_AnalysisOptions({required this.options});
+class _$_AnalysisOptions extends _AnalysisOptions {
+  const _$_AnalysisOptions({required this.options}) : super._();
 
   @override
   final Map<String, Object> options;
@@ -131,9 +131,10 @@ class _$_AnalysisOptions implements _AnalysisOptions {
       __$AnalysisOptionsCopyWithImpl<_AnalysisOptions>(this, _$identity);
 }
 
-abstract class _AnalysisOptions implements AnalysisOptions {
+abstract class _AnalysisOptions extends AnalysisOptions {
   const factory _AnalysisOptions({required Map<String, Object> options}) =
       _$_AnalysisOptions;
+  const _AnalysisOptions._() : super._();
 
   @override
   Map<String, Object> get options => throw _privateConstructorUsedError;

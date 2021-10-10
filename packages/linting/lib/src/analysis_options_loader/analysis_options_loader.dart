@@ -7,9 +7,21 @@ part 'analysis_options_loader.freezed.dart';
 
 @freezed
 class AnalysisOptions with _$AnalysisOptions {
+  const AnalysisOptions._();
+
   const factory AnalysisOptions({
     required Map<String, Object> options,
   }) = _AnalysisOptions;
+
+  List<String> get analyzerExclude {
+    final analyzer = options['analyzer'] as Map<String, dynamic>? ?? {};
+    return (analyzer['exclude'] as List?)?.cast<String>() ?? [];
+  }
+
+  List<String> get lintingRules {
+    final analyzer = options['linting'] as Map<String, dynamic>? ?? {};
+    return (analyzer['rules'] as List?)?.cast<String>() ?? [];
+  }
 }
 
 class AnalysisOptionsLoader {
