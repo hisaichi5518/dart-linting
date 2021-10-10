@@ -4,6 +4,8 @@ import 'package:linting/src/analyzer/model/analyzed_result.dart';
 import 'package:linting/src/analyzer/model/analyzer_config.dart';
 import 'package:linting/src/analyzer/model/internal_resolved_unit_result.dart';
 
+import 'model/suppression.dart';
+
 class LintingAnalyzer {
   const LintingAnalyzer();
 
@@ -20,16 +22,30 @@ class LintingAnalyzer {
       return AnalyzedResult(filePath: '', issues: []);
     }
 
+    final suppression = Suppression(
+      resolvedUnitResult.content,
+      resolvedUnitResult.lineInfo,
+    );
+
     final internalResolvedUnitResult = InternalResolvedUnitResult(
       path: resolvedUnitResult.path,
       content: resolvedUnitResult.content,
       unit: resolvedUnitResult.unit,
       lineInfo: resolvedUnitResult.lineInfo,
     );
-    // TODO: support ignore
 
     final issues = config.rules
-        .expand((rule) => rule.check(internalResolvedUnitResult))
+        .where((rule) => !suppression.isSuppressed(rule.ruleId))
+        .expand((rule) => rule
+            .check(
+              internalResolvedUnitResult,
+            )
+            .where(
+              (issue) => !suppression.isSuppressedAt(
+                rule.ruleId,
+                issue.location.start.line,
+              ),
+            ))
         .toList();
 
     return AnalyzedResult(
