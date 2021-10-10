@@ -56,9 +56,8 @@ mixin CommonCommandOptions on Command<void> {
     argParser.addOption(
       exclude,
       help: 'File paths in Glob syntax to be exclude.',
-      valueHelp: '{/**.g.dart,/**.template.dart}',
-      defaultsTo: '{/**.g.dart,/**.template.dart}',
+      valueHelp: '{**.g.dart,**.template.dart,**.freezed.dart}',
+      defaultsTo: '{**.g.dart,**.template.dart.**.freezed.dart}',
     );
   }
-
 }
