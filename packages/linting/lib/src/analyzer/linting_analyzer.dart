@@ -37,15 +37,11 @@ class LintingAnalyzer {
     final issues = config.rules
         .where((rule) => !suppression.isSuppressed(rule.ruleId))
         .expand((rule) => rule
-            .check(
-              internalResolvedUnitResult,
-            )
-            .where(
-              (issue) => !suppression.isSuppressedAt(
-                rule.ruleId,
-                issue.location.start.line,
-              ),
-            ))
+            .check(internalResolvedUnitResult)
+            .where((issue) => !suppression.isSuppressedAt(
+                  rule.ruleId,
+                  issue.location.start.line,
+                )))
         .toList();
 
     return AnalyzedResult(
