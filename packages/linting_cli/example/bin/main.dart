@@ -11,9 +11,7 @@ Future<void> main(List<String> args) async {
       reporters: [ConsoleReporter(print)],
       analyzer: LintingAnalyzer(),
     ),
-  ]).run(
-    ['analyze', 'lib'],
-  );
+  ]).run(args);
 }
 
 class _TestRule extends Rule {

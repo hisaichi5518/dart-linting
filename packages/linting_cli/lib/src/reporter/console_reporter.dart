@@ -17,9 +17,9 @@ class ConsoleReporter extends AnalyzeReporter {
         final source = issue.location.start.sourceUrl?.path ?? 'unknown source';
         final line = issue.location.start.line + 1;
         final column = issue.location.start.column + 1;
-        printer("""
-${issue.severity} • ${issue.message} • ${basename(source)}:$line:$column • ${issue.ruleId}
-""");
+        printer(
+          '${issue.severity} • ${issue.message} • ${basename(source)}:$line:$column • ${issue.ruleId}',
+        );
       }
     }
   }
