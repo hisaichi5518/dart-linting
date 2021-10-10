@@ -18,10 +18,13 @@ class _$AnalyzerConfigTearOff {
   const _$AnalyzerConfigTearOff();
 
   _AnalyzerConfig call(
-      {required Iterable<Rule> rules, required Iterable<String> exclude}) {
+      {required Iterable<Rule> rules,
+      required Iterable<String> excludes,
+      required String rootFolder}) {
     return _AnalyzerConfig(
       rules: rules,
-      exclude: exclude,
+      excludes: excludes,
+      rootFolder: rootFolder,
     );
   }
 }
@@ -32,7 +35,8 @@ const $AnalyzerConfig = _$AnalyzerConfigTearOff();
 /// @nodoc
 mixin _$AnalyzerConfig {
   Iterable<Rule> get rules => throw _privateConstructorUsedError;
-  Iterable<String> get exclude => throw _privateConstructorUsedError;
+  Iterable<String> get excludes => throw _privateConstructorUsedError;
+  String get rootFolder => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AnalyzerConfigCopyWith<AnalyzerConfig> get copyWith =>
@@ -44,7 +48,8 @@ abstract class $AnalyzerConfigCopyWith<$Res> {
   factory $AnalyzerConfigCopyWith(
           AnalyzerConfig value, $Res Function(AnalyzerConfig) then) =
       _$AnalyzerConfigCopyWithImpl<$Res>;
-  $Res call({Iterable<Rule> rules, Iterable<String> exclude});
+  $Res call(
+      {Iterable<Rule> rules, Iterable<String> excludes, String rootFolder});
 }
 
 /// @nodoc
@@ -59,17 +64,22 @@ class _$AnalyzerConfigCopyWithImpl<$Res>
   @override
   $Res call({
     Object? rules = freezed,
-    Object? exclude = freezed,
+    Object? excludes = freezed,
+    Object? rootFolder = freezed,
   }) {
     return _then(_value.copyWith(
       rules: rules == freezed
           ? _value.rules
           : rules // ignore: cast_nullable_to_non_nullable
               as Iterable<Rule>,
-      exclude: exclude == freezed
-          ? _value.exclude
-          : exclude // ignore: cast_nullable_to_non_nullable
+      excludes: excludes == freezed
+          ? _value.excludes
+          : excludes // ignore: cast_nullable_to_non_nullable
               as Iterable<String>,
+      rootFolder: rootFolder == freezed
+          ? _value.rootFolder
+          : rootFolder // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -81,7 +91,8 @@ abstract class _$AnalyzerConfigCopyWith<$Res>
           _AnalyzerConfig value, $Res Function(_AnalyzerConfig) then) =
       __$AnalyzerConfigCopyWithImpl<$Res>;
   @override
-  $Res call({Iterable<Rule> rules, Iterable<String> exclude});
+  $Res call(
+      {Iterable<Rule> rules, Iterable<String> excludes, String rootFolder});
 }
 
 /// @nodoc
@@ -98,34 +109,43 @@ class __$AnalyzerConfigCopyWithImpl<$Res>
   @override
   $Res call({
     Object? rules = freezed,
-    Object? exclude = freezed,
+    Object? excludes = freezed,
+    Object? rootFolder = freezed,
   }) {
     return _then(_AnalyzerConfig(
       rules: rules == freezed
           ? _value.rules
           : rules // ignore: cast_nullable_to_non_nullable
               as Iterable<Rule>,
-      exclude: exclude == freezed
-          ? _value.exclude
-          : exclude // ignore: cast_nullable_to_non_nullable
+      excludes: excludes == freezed
+          ? _value.excludes
+          : excludes // ignore: cast_nullable_to_non_nullable
               as Iterable<String>,
+      rootFolder: rootFolder == freezed
+          ? _value.rootFolder
+          : rootFolder // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_AnalyzerConfig implements _AnalyzerConfig {
-  const _$_AnalyzerConfig({required this.rules, required this.exclude});
+class _$_AnalyzerConfig extends _AnalyzerConfig {
+  const _$_AnalyzerConfig(
+      {required this.rules, required this.excludes, required this.rootFolder})
+      : super._();
 
   @override
   final Iterable<Rule> rules;
   @override
-  final Iterable<String> exclude;
+  final Iterable<String> excludes;
+  @override
+  final String rootFolder;
 
   @override
   String toString() {
-    return 'AnalyzerConfig(rules: $rules, exclude: $exclude)';
+    return 'AnalyzerConfig(rules: $rules, excludes: $excludes, rootFolder: $rootFolder)';
   }
 
   @override
@@ -134,15 +154,20 @@ class _$_AnalyzerConfig implements _AnalyzerConfig {
         (other is _AnalyzerConfig &&
             (identical(other.rules, rules) ||
                 const DeepCollectionEquality().equals(other.rules, rules)) &&
-            (identical(other.exclude, exclude) ||
-                const DeepCollectionEquality().equals(other.exclude, exclude)));
+            (identical(other.excludes, excludes) ||
+                const DeepCollectionEquality()
+                    .equals(other.excludes, excludes)) &&
+            (identical(other.rootFolder, rootFolder) ||
+                const DeepCollectionEquality()
+                    .equals(other.rootFolder, rootFolder)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(rules) ^
-      const DeepCollectionEquality().hash(exclude);
+      const DeepCollectionEquality().hash(excludes) ^
+      const DeepCollectionEquality().hash(rootFolder);
 
   @JsonKey(ignore: true)
   @override
@@ -150,15 +175,19 @@ class _$_AnalyzerConfig implements _AnalyzerConfig {
       __$AnalyzerConfigCopyWithImpl<_AnalyzerConfig>(this, _$identity);
 }
 
-abstract class _AnalyzerConfig implements AnalyzerConfig {
+abstract class _AnalyzerConfig extends AnalyzerConfig {
   const factory _AnalyzerConfig(
       {required Iterable<Rule> rules,
-      required Iterable<String> exclude}) = _$_AnalyzerConfig;
+      required Iterable<String> excludes,
+      required String rootFolder}) = _$_AnalyzerConfig;
+  const _AnalyzerConfig._() : super._();
 
   @override
   Iterable<Rule> get rules => throw _privateConstructorUsedError;
   @override
-  Iterable<String> get exclude => throw _privateConstructorUsedError;
+  Iterable<String> get excludes => throw _privateConstructorUsedError;
+  @override
+  String get rootFolder => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$AnalyzerConfigCopyWith<_AnalyzerConfig> get copyWith =>

@@ -61,9 +61,12 @@ void main() {
       final unit = await FileResolver.resolve(path);
       final analyzer = LintingAnalyzer();
       final result = await analyzer.analyze(
-        AnalyzerConfig(rules: [_TestRule()]),
+        AnalyzerConfig(
+          rules: [_TestRule()],
+          excludes: [],
+          rootFolder: dirname(path),
+        ),
         unit,
-        rootFolder: dirname(path),
         filePath: unit.path,
       );
       expect(result.issues.length, 1);

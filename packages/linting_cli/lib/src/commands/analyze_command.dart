@@ -44,7 +44,7 @@ class _CommandRequest {
     return _argResults[CommonCommandOptions.rootFolder];
   }
 
-  List<String> get exclude {
+  List<String> get excludes {
     return _analysisOptions.analyzerExclude
       ..add(_argResults[CommonCommandOptions.exclude]);
   }
@@ -110,7 +110,7 @@ class AnalyzeCommand extends BaseCommand<_CommandRequest> {
     final foldersToAnalyze = request.rest;
     final rootFolder = request.rootFolder;
     final rules = request.rules;
-    final exclude = request.exclude;
+    final excludes = request.excludes;
     final reporter = request.reporters.first;
 
     final resultList = <AnalyzedResult>[];
@@ -120,10 +120,13 @@ class AnalyzeCommand extends BaseCommand<_CommandRequest> {
 
       for (final file in files) {
         final result = await _analyze(
-          AnalyzerConfig(rules: rules, exclude: exclude),
+          AnalyzerConfig(
+            rules: rules,
+            excludes: excludes,
+            rootFolder: rootFolder,
+          ),
           analyzer,
           file,
-          rootFolder,
         );
         resultList.add(result);
       }
@@ -136,14 +139,12 @@ class AnalyzeCommand extends BaseCommand<_CommandRequest> {
     AnalyzerConfig config,
     LintingAnalyzer analyzer,
     FileSystemEntity file,
-    String rootFolder,
   ) async {
     final filePath = file.path;
     final resolvedUnitResult = await FileResolver.resolve(filePath);
     return await analyzer.analyze(
       config,
       resolvedUnitResult,
-      rootFolder: rootFolder,
       filePath: filePath,
     );
   }
