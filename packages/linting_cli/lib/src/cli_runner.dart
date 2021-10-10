@@ -1,12 +1,15 @@
 import 'dart:io';
 
 import 'package:args/command_runner.dart';
+import 'package:linting_cli/src/reporter/console_reporter.dart';
 
 import 'commands/analyze_command.dart';
 
 class CliRunner extends CommandRunner<void> {
   static final _commands = [
-    AnalyzeCommand(), // TODO: analyzer's reporter
+    AnalyzeCommand(reporters: [
+      ConsoleReporter(print),
+    ]),
   ];
 
   CliRunner({

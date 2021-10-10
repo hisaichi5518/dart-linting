@@ -1,6 +1,8 @@
 import 'dart:io';
 
 import 'package:linting/linting.dart';
+import 'package:linting_cli/src/commands/models/invalid_argument_exception.dart';
+import 'package:linting_cli/src/reporter/analyze_reporter.dart';
 import 'package:path/path.dart';
 
 import 'models/base_command.dart';
@@ -8,6 +10,8 @@ import 'models/common_command_options.dart';
 
 class AnalyzeCommand extends BaseCommand {
   static final String _reporter = 'reporter';
+
+  final List<AnalyzeReporter> reporters;
 
   @override
   String get description => 'Collect rules violations';
@@ -19,7 +23,10 @@ class AnalyzeCommand extends BaseCommand {
   String get invocation =>
       '${runner!.executableName} $name [arguments] <directories>';
 
-  AnalyzeCommand() {
+  AnalyzeCommand({required this.reporters}) {
+    if (reporters.isEmpty) {
+      throw Exception("reporters is empty!");
+    }
     _addFlags();
   }
 
@@ -27,6 +34,15 @@ class AnalyzeCommand extends BaseCommand {
   Future<void> validateCommand() async {
     validateRootFolderOption();
     validateTargetDirectories();
+
+    final reporters = this
+        .reporters
+        .where((reporter) => reporter.reporterId == argResults![_reporter]);
+    if (reporters.isEmpty) {
+      throw InvalidArgumentException(
+        "Can't find ${argResults![_reporter]} reporter from reporters",
+      );
+    }
   }
 
   Future<AnalysisOptions> loadAnalysisOptions() async {
@@ -85,8 +101,10 @@ class AnalyzeCommand extends BaseCommand {
       }
     }
 
-    // TODO: Reporter
-    print(resultList);
+    final reporter = reporters
+        .where((reporter) => reporter.reporterId == argResults[_reporter])
+        .first;
+    reporter.report(resultList);
   }
 
   Future<AnalyzedResult> _analyze(
@@ -118,11 +136,9 @@ class AnalyzeCommand extends BaseCommand {
         _reporter,
         abbr: 'r',
         help: 'The format of the output of the analysis.',
-        valueHelp: 'console', // TODO
-        allowed: [
-          'console', // TODO
-        ],
-        defaultsTo: 'console', // TODO
+        valueHelp: reporters.first.reporterId,
+        allowed: reporters.map((reporter) => reporter.reporterId),
+        defaultsTo: reporters.first.reporterId,
       );
   }
 }
