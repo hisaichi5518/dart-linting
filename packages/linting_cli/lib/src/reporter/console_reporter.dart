@@ -15,8 +15,8 @@ class ConsoleReporter extends AnalyzeReporter {
     for (final result in resultList) {
       for (final issue in result.issues) {
         final source = issue.location.start.sourceUrl?.path ?? 'unknown source';
-        final line = issue.location.start.line + 1;
-        final column = issue.location.start.column + 1;
+        final line = issue.location.start.line;
+        final column = issue.location.start.column;
         printer(
           '${issue.severity} • ${issue.message} • ${basename(source)}:$line:$column • ${issue.ruleId}',
         );
