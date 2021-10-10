@@ -17,9 +17,11 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$AnalyzerConfigTearOff {
   const _$AnalyzerConfigTearOff();
 
-  _AnalyzerConfig call({required List<Rule> rules}) {
+  _AnalyzerConfig call(
+      {required Iterable<Rule> rules, required Iterable<String> exclude}) {
     return _AnalyzerConfig(
       rules: rules,
+      exclude: exclude,
     );
   }
 }
@@ -29,7 +31,8 @@ const $AnalyzerConfig = _$AnalyzerConfigTearOff();
 
 /// @nodoc
 mixin _$AnalyzerConfig {
-  List<Rule> get rules => throw _privateConstructorUsedError;
+  Iterable<Rule> get rules => throw _privateConstructorUsedError;
+  Iterable<String> get exclude => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AnalyzerConfigCopyWith<AnalyzerConfig> get copyWith =>
@@ -41,7 +44,7 @@ abstract class $AnalyzerConfigCopyWith<$Res> {
   factory $AnalyzerConfigCopyWith(
           AnalyzerConfig value, $Res Function(AnalyzerConfig) then) =
       _$AnalyzerConfigCopyWithImpl<$Res>;
-  $Res call({List<Rule> rules});
+  $Res call({Iterable<Rule> rules, Iterable<String> exclude});
 }
 
 /// @nodoc
@@ -56,12 +59,17 @@ class _$AnalyzerConfigCopyWithImpl<$Res>
   @override
   $Res call({
     Object? rules = freezed,
+    Object? exclude = freezed,
   }) {
     return _then(_value.copyWith(
       rules: rules == freezed
           ? _value.rules
           : rules // ignore: cast_nullable_to_non_nullable
-              as List<Rule>,
+              as Iterable<Rule>,
+      exclude: exclude == freezed
+          ? _value.exclude
+          : exclude // ignore: cast_nullable_to_non_nullable
+              as Iterable<String>,
     ));
   }
 }
@@ -73,7 +81,7 @@ abstract class _$AnalyzerConfigCopyWith<$Res>
           _AnalyzerConfig value, $Res Function(_AnalyzerConfig) then) =
       __$AnalyzerConfigCopyWithImpl<$Res>;
   @override
-  $Res call({List<Rule> rules});
+  $Res call({Iterable<Rule> rules, Iterable<String> exclude});
 }
 
 /// @nodoc
@@ -90,12 +98,17 @@ class __$AnalyzerConfigCopyWithImpl<$Res>
   @override
   $Res call({
     Object? rules = freezed,
+    Object? exclude = freezed,
   }) {
     return _then(_AnalyzerConfig(
       rules: rules == freezed
           ? _value.rules
           : rules // ignore: cast_nullable_to_non_nullable
-              as List<Rule>,
+              as Iterable<Rule>,
+      exclude: exclude == freezed
+          ? _value.exclude
+          : exclude // ignore: cast_nullable_to_non_nullable
+              as Iterable<String>,
     ));
   }
 }
@@ -103,14 +116,16 @@ class __$AnalyzerConfigCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_AnalyzerConfig implements _AnalyzerConfig {
-  const _$_AnalyzerConfig({required this.rules});
+  const _$_AnalyzerConfig({required this.rules, required this.exclude});
 
   @override
-  final List<Rule> rules;
+  final Iterable<Rule> rules;
+  @override
+  final Iterable<String> exclude;
 
   @override
   String toString() {
-    return 'AnalyzerConfig(rules: $rules)';
+    return 'AnalyzerConfig(rules: $rules, exclude: $exclude)';
   }
 
   @override
@@ -118,12 +133,16 @@ class _$_AnalyzerConfig implements _AnalyzerConfig {
     return identical(this, other) ||
         (other is _AnalyzerConfig &&
             (identical(other.rules, rules) ||
-                const DeepCollectionEquality().equals(other.rules, rules)));
+                const DeepCollectionEquality().equals(other.rules, rules)) &&
+            (identical(other.exclude, exclude) ||
+                const DeepCollectionEquality().equals(other.exclude, exclude)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(rules);
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(rules) ^
+      const DeepCollectionEquality().hash(exclude);
 
   @JsonKey(ignore: true)
   @override
@@ -132,11 +151,14 @@ class _$_AnalyzerConfig implements _AnalyzerConfig {
 }
 
 abstract class _AnalyzerConfig implements AnalyzerConfig {
-  const factory _AnalyzerConfig({required List<Rule> rules}) =
-      _$_AnalyzerConfig;
+  const factory _AnalyzerConfig(
+      {required Iterable<Rule> rules,
+      required Iterable<String> exclude}) = _$_AnalyzerConfig;
 
   @override
-  List<Rule> get rules => throw _privateConstructorUsedError;
+  Iterable<Rule> get rules => throw _privateConstructorUsedError;
+  @override
+  Iterable<String> get exclude => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$AnalyzerConfigCopyWith<_AnalyzerConfig> get copyWith =>
