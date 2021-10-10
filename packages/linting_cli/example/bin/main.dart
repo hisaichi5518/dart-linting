@@ -5,8 +5,15 @@ import 'package:linting/linting.dart';
 import 'package:linting_cli/linting_cli.dart';
 
 Future<void> main(List<String> args) async {
-  Linting.rules.addAll([_TestRule()]);
-  await CliRunner().run(['analyze', 'lib', '--reporter=console']);
+  await CliRunner(commands: [
+    AnalyzeCommand(
+      rules: [_TestRule()],
+      reporters: [ConsoleReporter(print)],
+      analyzer: LintingAnalyzer(),
+    ),
+  ]).run(
+    ['analyze', 'lib'],
+  );
 }
 
 class _TestRule extends Rule {

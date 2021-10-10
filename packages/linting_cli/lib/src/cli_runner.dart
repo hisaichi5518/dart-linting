@@ -1,25 +1,15 @@
 import 'dart:io';
 
 import 'package:args/command_runner.dart';
-import 'package:linting_cli/src/reporter/console_reporter.dart';
-
-import 'commands/analyze_command.dart';
 
 class CliRunner extends CommandRunner<void> {
-  static final _commands = [
-    AnalyzeCommand(reporters: [
-      ConsoleReporter(print),
-    ]),
-  ];
-
   CliRunner({
     List<Command<void>> commands = const <Command<void>>[],
   }) : super('linting', 'Analyze your code') {
     if (commands.isEmpty) {
-      _commands.forEach(addCommand);
-    } else {
-      commands.forEach(addCommand);
+      throw Exception("commands is empty!");
     }
+    commands.forEach(addCommand);
   }
 
   @override
@@ -28,7 +18,7 @@ class CliRunner extends CommandRunner<void> {
   @override
   Future<void> run(Iterable<String> args) async {
     try {
-      await super.run(_addDefaultCommand(args));
+      await super.run(args);
     } on UsageException catch (e) {
       print('${e.message}\n');
       print('${e.usage}\n');
@@ -38,10 +28,4 @@ class CliRunner extends CommandRunner<void> {
       exit(1);
     }
   }
-
-  Iterable<String> _addDefaultCommand(Iterable<String> args) => args.isEmpty
-      ? args
-      : !commands.keys.contains(args.first)
-          ? ['analyze', ...args]
-          : args;
 }
