@@ -15,7 +15,7 @@ class LintingAnalyzer {
     if (resolvedUnitResult.state != ResultState.VALID ||
         filePath == null ||
         !resolvedUnitResult.path.endsWith('.dart') ||
-        isExcluded(resolvedUnitResult.path, config.excludePatterns)) {
+        _isExcluded(resolvedUnitResult.path, config.excludePatterns)) {
       // TODO: log?
       return AnalyzedResult(filePath: '', issues: []);
     }
@@ -38,7 +38,7 @@ class LintingAnalyzer {
     );
   }
 
-  bool isExcluded(String? absolutePath, Iterable<Glob> excludes) {
+  bool _isExcluded(String? absolutePath, Iterable<Glob> excludes) {
     final path = absolutePath?.replaceAll(r'\', '/');
     return path != null && excludes.any((exclude) => exclude.matches(path));
   }
