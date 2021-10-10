@@ -1,6 +1,7 @@
+import 'dart:io';
+
 import 'package:linting/linting.dart';
 import 'package:linting_cli/src/reporter/analyze_reporter.dart';
-import 'package:path/path.dart';
 
 class ConsoleReporter extends AnalyzeReporter {
   final void Function(Object? object) printer;
@@ -14,11 +15,14 @@ class ConsoleReporter extends AnalyzeReporter {
   Future<void> report(List<AnalyzedResult> resultList) async {
     for (final result in resultList) {
       for (final issue in result.issues) {
-        final source = issue.location.start.sourceUrl?.path ?? 'unknown source';
+        final source =
+            (issue.location.start.sourceUrl?.path ?? 'unknown source')
+                .replaceFirst(Directory.current.path + "/", "");
         final line = issue.location.start.line;
         final column = issue.location.start.column;
+
         printer(
-          '${issue.severity} • ${issue.message} • ${basename(source)}:$line:$column • ${issue.ruleId}',
+          '${issue.severity} • ${issue.message} • $source:$line:$column • ${issue.ruleId}',
         );
       }
     }
