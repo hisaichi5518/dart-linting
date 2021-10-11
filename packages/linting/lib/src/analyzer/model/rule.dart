@@ -24,6 +24,7 @@ abstract class Rule {
     );
   }
 
+  // Copied from https://github.com/dart-code-checker/dart-code-metrics/blob/474c2a69f9f356aed8bee5a8cb5ec86feeafcad1/lib/src/utils/node_utils.dart#L7
   /// Returns [SourceSpan] with information about original code for [node] from [source]
   SourceSpan nodeLocation({
     required SyntacticEntity node,
