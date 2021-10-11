@@ -58,7 +58,7 @@ class _Visitor extends RecursiveAstVisitor<void> {
 void main() {
   group('analyze', () {
     test('run', () async {
-      final path = "test/src/analyzer/examples/test.dart";
+      final path = "test/src/analyzer/examples/error.dart";
       final unit = await FileResolver.resolve(path);
       final analyzer = LintingAnalyzer();
       final result = await analyzer.analyze(
@@ -74,13 +74,13 @@ void main() {
     });
 
     test('excludes', () async {
-      final path = "test/src/analyzer/examples/test.dart";
+      final path = "test/src/analyzer/examples/error.dart";
       final unit = await FileResolver.resolve(path);
       final analyzer = LintingAnalyzer();
       final result = await analyzer.analyze(
         AnalyzerConfig(
           rules: [_TestRule()],
-          excludes: ['**/test.dart'],
+          excludes: ['**/error.dart'],
           rootFolder: Directory.current.path,
         ),
         unit,
@@ -96,7 +96,7 @@ void main() {
       final result = await analyzer.analyze(
         AnalyzerConfig(
           rules: [_TestRule()],
-          excludes: ['**/test.dart'],
+          excludes: [],
           rootFolder: Directory.current.path,
         ),
         unit,
@@ -112,7 +112,7 @@ void main() {
       final result = await analyzer.analyze(
         AnalyzerConfig(
           rules: [_TestRule()],
-          excludes: ['**/test.dart'],
+          excludes: [],
           rootFolder: Directory.current.path,
         ),
         unit,
