@@ -19,6 +19,8 @@ abstract class Rule {
       location: location,
       severity: severity,
       message: message,
+      verboseMessage: verboseMessage,
+      suggestion: replacement,
     );
   }
 
