@@ -1,7 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:glob/glob.dart';
-import 'package:linting/src/analyzer/model/rule.dart';
 import 'package:path/path.dart';
+
+import 'rule.dart';
 
 part 'analyzer_config.freezed.dart';
 

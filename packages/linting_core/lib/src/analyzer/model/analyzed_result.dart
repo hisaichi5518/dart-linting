@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:linting/src/analyzer/model/issue.dart';
+
+import 'issue.dart';
 
 part 'analyzed_result.freezed.dart';
 

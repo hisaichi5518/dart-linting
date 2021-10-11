@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:linting/src/analysis_options_loader/analysis_options_loader.dart';
+import 'package:linting_core/linting_core.dart';
 import 'package:test/test.dart';
 
 void main() {

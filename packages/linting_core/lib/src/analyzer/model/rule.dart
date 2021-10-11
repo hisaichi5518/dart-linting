@@ -1,10 +1,11 @@
 import 'package:analyzer/dart/ast/ast.dart';
 import 'package:analyzer/dart/ast/syntactic_entity.dart';
 import 'package:analyzer/diagnostic/diagnostic.dart';
-import 'package:linting/src/analyzer/model/internal_resolved_unit_result.dart';
-import 'package:linting/src/analyzer/model/issue.dart';
-import 'package:linting/src/analyzer/model/replacement.dart';
 import 'package:source_span/source_span.dart';
+
+import 'internal_resolved_unit_result.dart';
+import 'issue.dart';
+import 'replacement.dart';
 
 abstract class Rule {
   Issue createIssue({

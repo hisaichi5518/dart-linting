@@ -1,9 +1,9 @@
 import 'package:analyzer/dart/analysis/results.dart';
 import 'package:glob/glob.dart';
-import 'package:linting/src/analyzer/model/analyzed_result.dart';
-import 'package:linting/src/analyzer/model/analyzer_config.dart';
-import 'package:linting/src/analyzer/model/internal_resolved_unit_result.dart';
 
+import 'model/analyzed_result.dart';
+import 'model/analyzer_config.dart';
+import 'model/internal_resolved_unit_result.dart';
 import 'model/suppression.dart';
 
 class LintingAnalyzer {

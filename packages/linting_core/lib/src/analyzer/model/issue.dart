@@ -1,7 +1,8 @@
 import 'package:analyzer/diagnostic/diagnostic.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:linting/src/analyzer/model/replacement.dart';
 import 'package:source_span/source_span.dart';
+
+import 'replacement.dart';
 
 part 'issue.freezed.dart';
 

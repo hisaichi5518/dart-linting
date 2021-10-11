@@ -1,5 +1,4 @@
 import 'package:analyzer/source/line_info.dart';
-import 'package:linting/src/analyzer/model/suppression.dart';
 import 'package:linting_core/linting_core.dart';
 import 'package:test/test.dart';
 
