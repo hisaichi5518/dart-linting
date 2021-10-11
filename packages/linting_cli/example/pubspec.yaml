@@ -7,7 +7,7 @@ environment:
   sdk: ">=2.13.0 <3.0.0"
 
 dependencies:
-  linting: ^1.0.0
+  linting_core: ^1.0.0
   linting_cli: ^1.0.0
 
 dev_dependencies:

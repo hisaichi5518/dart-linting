@@ -1,4 +1,4 @@
-import 'package:linting/linting.dart';
+import 'package:linting_core/linting_core.dart';
 
 abstract class AnalyzeReporter {
   const AnalyzeReporter();

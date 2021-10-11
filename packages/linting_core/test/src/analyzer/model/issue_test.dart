@@ -1,5 +1,5 @@
 import 'package:analyzer/diagnostic/diagnostic.dart';
-import 'package:linting/linting.dart';
+import 'package:linting_core/linting_core.dart';
 import 'package:source_span/source_span.dart';
 import 'package:test/test.dart';
 

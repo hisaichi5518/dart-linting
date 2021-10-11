@@ -1,5 +1,5 @@
-name: linting
-description: linting is a framework for creating custom linters using the analyzer_plugin.
+name: linting_core
+description: linting is a framework for creating custom linters using the analyzer_plugin or cli.
 version: 1.0.0+1
 publish_to: none
 

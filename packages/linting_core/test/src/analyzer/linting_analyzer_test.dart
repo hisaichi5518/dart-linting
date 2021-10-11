@@ -3,12 +3,12 @@ import 'dart:io';
 import 'package:analyzer/dart/ast/ast.dart';
 import 'package:analyzer/dart/ast/visitor.dart';
 import 'package:analyzer/diagnostic/diagnostic.dart';
-import 'package:linting/linting.dart';
 import 'package:linting/src/analyzer/linting_analyzer.dart';
 import 'package:linting/src/analyzer/model/analyzer_config.dart';
 import 'package:linting/src/analyzer/model/internal_resolved_unit_result.dart';
 import 'package:linting/src/analyzer/model/issue.dart';
 import 'package:linting/src/analyzer/model/rule.dart';
+import 'package:linting_core/linting_core.dart';
 import 'package:test/test.dart';
 
 class _TestRule extends Rule {

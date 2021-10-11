@@ -1,7 +1,7 @@
 import 'dart:io';
 
-import 'package:linting/linting.dart';
 import 'package:linting_cli/src/reporter/analyze_reporter.dart';
+import 'package:linting_core/linting_core.dart';
 
 class ConsoleReporter extends AnalyzeReporter {
   final void Function(Object? object) printer;

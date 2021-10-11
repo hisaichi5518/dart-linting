@@ -1,9 +1,9 @@
 import 'dart:io';
 
 import 'package:args/args.dart';
-import 'package:linting/linting.dart';
 import 'package:linting_cli/src/commands/models/invalid_argument_exception.dart';
 import 'package:linting_cli/src/reporter/analyze_reporter.dart';
+import 'package:linting_core/linting_core.dart';
 import 'package:path/path.dart';
 
 import 'models/base_command.dart';
