@@ -73,6 +73,38 @@ void main() {
       expect(result.issues.length, 1);
     });
 
+    test('filePath is null', () async {
+      final path = "test/src/analyzer/examples/not_dart_file.rb";
+      final unit = await FileResolver.resolve(path);
+      final analyzer = LintingAnalyzer();
+      final result = await analyzer.analyze(
+        AnalyzerConfig(
+          rules: [_TestRule()],
+          excludes: [],
+          rootFolder: Directory.current.path,
+        ),
+        unit,
+        filePath: null,
+      );
+      expect(result.issues.length, 0);
+    });
+
+    test('not dart file', () async {
+      final path = "test/src/analyzer/examples/not_dart_file.rb";
+      final unit = await FileResolver.resolve(path);
+      final analyzer = LintingAnalyzer();
+      final result = await analyzer.analyze(
+        AnalyzerConfig(
+          rules: [_TestRule()],
+          excludes: [],
+          rootFolder: Directory.current.path,
+        ),
+        unit,
+        filePath: unit.path,
+      );
+      expect(result.issues.length, 0);
+    });
+
     test('excludes', () async {
       final path = "test/src/analyzer/examples/error.dart";
       final unit = await FileResolver.resolve(path);
