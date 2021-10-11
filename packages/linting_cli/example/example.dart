@@ -4,6 +4,7 @@ import 'package:analyzer/diagnostic/diagnostic.dart';
 import 'package:linting/linting.dart';
 import 'package:linting_cli/linting_cli.dart';
 
+// dart example.dart analyze lib
 Future<void> main(List<String> args) async {
   await CliRunner(commands: [
     AnalyzeCommand(
