@@ -14,13 +14,13 @@ class AnalysisOptions with _$AnalysisOptions {
   }) = _AnalysisOptions;
 
   List<String> get analyzerExclude {
-    final analyzer = options['analyzer'] as Map<String, dynamic>? ?? {};
-    return (analyzer['exclude'] as List?)?.cast<String>() ?? [];
+    final parent = (options['analyzer'] as Map?)?.cast<String, dynamic>() ?? {};
+    return (parent['exclude'] as List?)?.cast<String>() ?? [];
   }
 
   List<String> get lintingRules {
-    final analyzer = options['linting'] as Map<String, dynamic>? ?? {};
-    return (analyzer['rules'] as List?)?.cast<String>() ?? [];
+    final parent = (options['linting'] as Map?)?.cast<String, dynamic>() ?? {};
+    return (parent['rules'] as List?)?.cast<String>() ?? [];
   }
 }
 
