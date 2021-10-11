@@ -28,7 +28,7 @@ jobs:
       - run: ./.github/workflows/scripts/install-tools.sh
       - run: melos run format
 
-  test_linux:
+  test_on_linux:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
