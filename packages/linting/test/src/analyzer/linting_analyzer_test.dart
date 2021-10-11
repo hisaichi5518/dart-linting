@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:analyzer/dart/ast/ast.dart';
 import 'package:analyzer/dart/ast/visitor.dart';
 import 'package:analyzer/diagnostic/diagnostic.dart';
@@ -7,7 +9,6 @@ import 'package:linting/src/analyzer/model/analyzer_config.dart';
 import 'package:linting/src/analyzer/model/internal_resolved_unit_result.dart';
 import 'package:linting/src/analyzer/model/issue.dart';
 import 'package:linting/src/analyzer/model/rule.dart';
-import 'package:path/path.dart';
 import 'package:test/test.dart';
 
 class _TestRule extends Rule {
@@ -57,19 +58,67 @@ class _Visitor extends RecursiveAstVisitor<void> {
 void main() {
   group('analyze', () {
     test('run', () async {
-      final path = "test/src/linting_analyzer/examples/test.dart";
+      final path = "test/src/analyzer/examples/test.dart";
       final unit = await FileResolver.resolve(path);
       final analyzer = LintingAnalyzer();
       final result = await analyzer.analyze(
         AnalyzerConfig(
           rules: [_TestRule()],
           excludes: [],
-          rootFolder: dirname(path),
+          rootFolder: Directory.current.path,
         ),
         unit,
         filePath: unit.path,
       );
       expect(result.issues.length, 1);
+    });
+
+    test('excludes', () async {
+      final path = "test/src/analyzer/examples/test.dart";
+      final unit = await FileResolver.resolve(path);
+      final analyzer = LintingAnalyzer();
+      final result = await analyzer.analyze(
+        AnalyzerConfig(
+          rules: [_TestRule()],
+          excludes: ['**/test.dart'],
+          rootFolder: Directory.current.path,
+        ),
+        unit,
+        filePath: unit.path,
+      );
+      expect(result.issues.length, 0);
+    });
+
+    test('ignore for line', () async {
+      final path = "test/src/analyzer/examples/ignore_for_line.dart";
+      final unit = await FileResolver.resolve(path);
+      final analyzer = LintingAnalyzer();
+      final result = await analyzer.analyze(
+        AnalyzerConfig(
+          rules: [_TestRule()],
+          excludes: ['**/test.dart'],
+          rootFolder: Directory.current.path,
+        ),
+        unit,
+        filePath: unit.path,
+      );
+      expect(result.issues.length, 0);
+    });
+
+    test('ignore for file', () async {
+      final path = "test/src/analyzer/examples/ignore_for_file.dart";
+      final unit = await FileResolver.resolve(path);
+      final analyzer = LintingAnalyzer();
+      final result = await analyzer.analyze(
+        AnalyzerConfig(
+          rules: [_TestRule()],
+          excludes: ['**/test.dart'],
+          rootFolder: Directory.current.path,
+        ),
+        unit,
+        filePath: unit.path,
+      );
+      expect(result.issues.length, 0);
     });
   });
 }
