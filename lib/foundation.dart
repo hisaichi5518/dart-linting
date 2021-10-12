@@ -1,10 +1,3 @@
-export 'src/cli/analyze_reporter.dart';
-export 'src/cli/commands/analyze_command.dart';
-export 'src/cli/commands/models/base_command.dart';
-export 'src/cli/commands/models/common_command_options.dart';
-export 'src/cli/commands/models/invalid_argument_exception.dart';
-export 'src/cli/reporter/console_reporter.dart';
-export 'src/cli/runner/cli_runner.dart';
 export 'src/foundation/analysis_options_loader/analysis_options_loader.dart';
 export 'src/foundation/analyzer/linting_analyzer.dart';
 export 'src/foundation/analyzer/model/analyzed_result.dart';

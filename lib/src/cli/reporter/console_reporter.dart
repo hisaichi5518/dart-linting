@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import '../../../linting.dart';
+import '../../../foundation.dart';
 import '../analyze_reporter.dart';
 
 class ConsoleReporter extends AnalyzeReporter {

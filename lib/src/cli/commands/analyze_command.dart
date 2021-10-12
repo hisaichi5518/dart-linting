@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:args/args.dart';
 import 'package:path/path.dart';
 
-import '../../../linting.dart';
+import '../../../foundation.dart';
 import '../analyze_reporter.dart';
 import 'models/base_command.dart';
 import 'models/common_command_options.dart';

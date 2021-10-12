@@ -1,4 +1,4 @@
-import '../../linting.dart';
+import '../../foundation.dart';
 
 abstract class AnalyzeReporter {
   const AnalyzeReporter();

@@ -1,7 +1,7 @@
 import 'package:analyzer/dart/ast/ast.dart';
 import 'package:analyzer/dart/ast/visitor.dart';
 import 'package:analyzer/diagnostic/diagnostic.dart';
-import 'package:linting/linting.dart';
+import 'package:linting/cli.dart';
 
 // dart example.dart analyze examples
 Future<void> main(List<String> args) async {

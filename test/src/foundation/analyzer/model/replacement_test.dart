@@ -1,4 +1,4 @@
-import 'package:linting/linting.dart';
+import 'package:linting/foundation.dart';
 import 'package:test/test.dart';
 
 void main() {
