@@ -12,6 +12,8 @@ pubspec.lock
 flutter_export_environment.sh
 
 *.iml
+*.ipr
+*.iws
 
 .flutter-plugins
 .flutter-plugins-dependencies
