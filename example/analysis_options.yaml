@@ -1,0 +1,4 @@
+include: package:lints/recommended.yaml
+linting:
+  rules:
+    - test-rule
