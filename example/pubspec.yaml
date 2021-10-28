@@ -8,6 +8,8 @@ environment:
 
 dependencies:
   linting: ^1.0.0
+  linting_example_plugin_loader:
+    path: tools/analyzer_plugin
 
 dev_dependencies:
   test: ^1.17.0
