@@ -1,5 +1,7 @@
 import 'package:linting/cli.dart';
-import 'package:linting_example_plugin_loader/rules.dart';
+
+// ignore: avoid_relative_lib_imports
+import '../tools/analyzer_plugin/lib/rules.dart';
 
 // dart bin/linter.dart analyze lib
 Future<void> main(List<String> args) async {
