@@ -1,20 +1,31 @@
-# dart-linting
+# linting
 
-linting is a framework for creating custom linters using the analyzer_plugin.
+linting is a framework for creating custom linter.
 
 ## Motivation
 
-Dart has a [linter](https://github.com/dart-lang/linter), but it is currently not able to use Custom Rules.
+Dart has a [linter](https://github.com/dart-lang/linter), but it is currently not able to create custom rules.
 
 https://github.com/dart-lang/linter/issues/697
 
-There are several ways to use Custom Rules, but each has its own disadvantages.
+There are several ways to create custom rules, but each has its own disadvantages.
 
 - Create your own linter command
-  - Easy to implement
-  - Cannot check errors in the IDE
+  - Easy to implement.
+  - Cannot check errors in the IDE.
 - Use the analyzer_plugin
-  - Errors can be displayed in the IDE
-  - Difficult to implement
+  - Errors can be displayed in the IDE.
+  - Difficult to implement and debug.
+  - To check errors in CI (ex, Github Action), need to create a command.
 
-linting is a framework to ease the implementation when creating a custom linter using analyzer_plugin.
+linting is a framework for solving these problems.
+
+## Getting Started
+
+The complete code can be found at [example](https://github.com/hisaichi5518/dart-linting/tree/main/example)
+
+## TODO
+
+- [ ] auto-fix command for CLI
+- [ ] auto-fix command for analyzer_plugin
+- [ ] linting create .
