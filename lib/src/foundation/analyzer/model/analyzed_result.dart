@@ -8,6 +8,6 @@ part 'analyzed_result.freezed.dart';
 class AnalyzedResult with _$AnalyzedResult {
   const factory AnalyzedResult({
     required String filePath,
-    required List<Issue> issues,
+    required Iterable<Issue> issues,
   }) = _AnalyzedResult;
 }

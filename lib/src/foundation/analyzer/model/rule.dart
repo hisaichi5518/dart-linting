@@ -64,5 +64,5 @@ abstract class Rule {
 
   Severity get severity;
 
-  List<Issue> check(InternalResolvedUnitResult source);
+  Iterable<Issue> check(InternalResolvedUnitResult source);
 }

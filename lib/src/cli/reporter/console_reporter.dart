@@ -12,7 +12,7 @@ class ConsoleReporter extends AnalyzeReporter {
   String get reporterId => 'console';
 
   @override
-  Future<void> report(List<AnalyzedResult> resultList) async {
+  Future<void> report(Iterable<AnalyzedResult> resultList) async {
     for (final result in resultList) {
       for (final issue in result.issues) {
         final source =

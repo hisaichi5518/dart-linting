@@ -5,5 +5,5 @@ abstract class AnalyzeReporter {
 
   String get reporterId;
 
-  Future<void> report(List<AnalyzedResult> resultList);
+  Future<void> report(Iterable<AnalyzedResult> resultList);
 }

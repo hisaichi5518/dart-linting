@@ -14,8 +14,8 @@ const String _reporter = 'reporter';
 class _CommandRequest {
   final AnalysisOptions _analysisOptions;
   final ArgResults _argResults;
-  final List<AnalyzeReporter> _reporters;
-  final List<Rule> _rules;
+  final Iterable<AnalyzeReporter> _reporters;
+  final Iterable<Rule> _rules;
 
   _CommandRequest(
     this._analysisOptions,
@@ -24,19 +24,17 @@ class _CommandRequest {
     this._rules,
   );
 
-  List<Rule> get rules {
+  Iterable<Rule> get rules {
     return _rules
-        .where((rule) => _analysisOptions.lintingRules.contains(rule.ruleId))
-        .toList();
+        .where((rule) => _analysisOptions.lintingRules.contains(rule.ruleId));
   }
 
-  List<AnalyzeReporter> get reporters {
+  Iterable<AnalyzeReporter> get reporters {
     return _reporters
-        .where((reporter) => reporter.reporterId == _argResults[_reporter])
-        .toList();
+        .where((reporter) => reporter.reporterId == _argResults[_reporter]);
   }
 
-  List<String> get rest {
+  Iterable<String> get rest {
     return _argResults.rest;
   }
 
@@ -44,8 +42,8 @@ class _CommandRequest {
     return _argResults[CommonCommandOptions.rootFolder];
   }
 
-  List<String> get excludes {
-    return _analysisOptions.analyzerExclude
+  Iterable<String> get excludes {
+    return _analysisOptions.analyzerExclude.toList()
       ..add(_argResults[CommonCommandOptions.exclude]);
   }
 
@@ -62,8 +60,8 @@ class _CommandRequest {
 }
 
 class AnalyzeCommand extends BaseCommand<_CommandRequest> {
-  final List<Rule> rules;
-  final List<AnalyzeReporter> reporters;
+  final Iterable<Rule> rules;
+  final Iterable<AnalyzeReporter> reporters;
   final LintingAnalyzer analyzer;
 
   @override

@@ -66,6 +66,8 @@ abstract class $IssueCopyWith<$Res> {
       String message,
       String? verboseMessage,
       Replacement? suggestion});
+
+  $ReplacementCopyWith<$Res>? get suggestion;
 }
 
 /// @nodoc
@@ -117,6 +119,17 @@ class _$IssueCopyWithImpl<$Res> implements $IssueCopyWith<$Res> {
               as Replacement?,
     ));
   }
+
+  @override
+  $ReplacementCopyWith<$Res>? get suggestion {
+    if (_value.suggestion == null) {
+      return null;
+    }
+
+    return $ReplacementCopyWith<$Res>(_value.suggestion!, (value) {
+      return _then(_value.copyWith(suggestion: value));
+    });
+  }
 }
 
 /// @nodoc
@@ -132,6 +145,9 @@ abstract class _$IssueCopyWith<$Res> implements $IssueCopyWith<$Res> {
       String message,
       String? verboseMessage,
       Replacement? suggestion});
+
+  @override
+  $ReplacementCopyWith<$Res>? get suggestion;
 }
 
 /// @nodoc

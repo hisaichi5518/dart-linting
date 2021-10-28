@@ -18,7 +18,7 @@ class _$AnalyzedResultTearOff {
   const _$AnalyzedResultTearOff();
 
   _AnalyzedResult call(
-      {required String filePath, required List<Issue> issues}) {
+      {required String filePath, required Iterable<Issue> issues}) {
     return _AnalyzedResult(
       filePath: filePath,
       issues: issues,
@@ -32,7 +32,7 @@ const $AnalyzedResult = _$AnalyzedResultTearOff();
 /// @nodoc
 mixin _$AnalyzedResult {
   String get filePath => throw _privateConstructorUsedError;
-  List<Issue> get issues => throw _privateConstructorUsedError;
+  Iterable<Issue> get issues => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AnalyzedResultCopyWith<AnalyzedResult> get copyWith =>
@@ -44,7 +44,7 @@ abstract class $AnalyzedResultCopyWith<$Res> {
   factory $AnalyzedResultCopyWith(
           AnalyzedResult value, $Res Function(AnalyzedResult) then) =
       _$AnalyzedResultCopyWithImpl<$Res>;
-  $Res call({String filePath, List<Issue> issues});
+  $Res call({String filePath, Iterable<Issue> issues});
 }
 
 /// @nodoc
@@ -69,7 +69,7 @@ class _$AnalyzedResultCopyWithImpl<$Res>
       issues: issues == freezed
           ? _value.issues
           : issues // ignore: cast_nullable_to_non_nullable
-              as List<Issue>,
+              as Iterable<Issue>,
     ));
   }
 }
@@ -81,7 +81,7 @@ abstract class _$AnalyzedResultCopyWith<$Res>
           _AnalyzedResult value, $Res Function(_AnalyzedResult) then) =
       __$AnalyzedResultCopyWithImpl<$Res>;
   @override
-  $Res call({String filePath, List<Issue> issues});
+  $Res call({String filePath, Iterable<Issue> issues});
 }
 
 /// @nodoc
@@ -108,7 +108,7 @@ class __$AnalyzedResultCopyWithImpl<$Res>
       issues: issues == freezed
           ? _value.issues
           : issues // ignore: cast_nullable_to_non_nullable
-              as List<Issue>,
+              as Iterable<Issue>,
     ));
   }
 }
@@ -121,7 +121,7 @@ class _$_AnalyzedResult implements _AnalyzedResult {
   @override
   final String filePath;
   @override
-  final List<Issue> issues;
+  final Iterable<Issue> issues;
 
   @override
   String toString() {
@@ -154,12 +154,12 @@ class _$_AnalyzedResult implements _AnalyzedResult {
 abstract class _AnalyzedResult implements AnalyzedResult {
   const factory _AnalyzedResult(
       {required String filePath,
-      required List<Issue> issues}) = _$_AnalyzedResult;
+      required Iterable<Issue> issues}) = _$_AnalyzedResult;
 
   @override
   String get filePath => throw _privateConstructorUsedError;
   @override
-  List<Issue> get issues => throw _privateConstructorUsedError;
+  Iterable<Issue> get issues => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$AnalyzedResultCopyWith<_AnalyzedResult> get copyWith =>

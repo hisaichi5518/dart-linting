@@ -4,7 +4,7 @@ import 'package:args/command_runner.dart';
 
 class CliRunner extends CommandRunner<void> {
   CliRunner({
-    List<Command<void>> commands = const <Command<void>>[],
+    Iterable<Command<void>> commands = const <Command<void>>[],
   }) : super('linting', 'Analyze your code') {
     if (commands.isEmpty) {
       throw Exception("commands is empty!");

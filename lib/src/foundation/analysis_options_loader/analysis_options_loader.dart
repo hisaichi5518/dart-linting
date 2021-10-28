@@ -13,12 +13,12 @@ class AnalysisOptions with _$AnalysisOptions {
     required Map<String, Object> options,
   }) = _AnalysisOptions;
 
-  List<String> get analyzerExclude {
+  Iterable<String> get analyzerExclude {
     final parent = (options['analyzer'] as Map?)?.cast<String, dynamic>() ?? {};
     return (parent['exclude'] as List?)?.cast<String>() ?? [];
   }
 
-  List<String> get lintingRules {
+  Iterable<String> get lintingRules {
     final parent = (options['linting'] as Map?)?.cast<String, dynamic>() ?? {};
     return (parent['rules'] as List?)?.cast<String>() ?? [];
   }
