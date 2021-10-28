@@ -26,9 +26,11 @@ jobs:
         with:
           channel: stable
       - run: ./.github/workflows/scripts/install-tools.sh
-      - run: |
-        dart format -o write .
-        ./.github/workflows/scripts/validate-formatting.sh
+      - name: "Format"
+        run: |
+          dart format -o write .
+          ./.github/workflows/scripts/validate-formatting.sh
+
 
   test_on_linux:
     runs-on: ubuntu-latest
