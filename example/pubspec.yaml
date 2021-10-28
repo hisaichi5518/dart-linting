@@ -1,5 +1,5 @@
-name: linting_cli_example
-description: linting cli example
+name: linting_example
+description: linting example
 version: 1.0.0+1
 publish_to: none
 
@@ -9,7 +9,12 @@ environment:
 dependencies:
   linting:
     path: ../
+  linting_example_plugin_loader:
+    path: tools/analyzer_plugin/
 
 dev_dependencies:
   test: ^1.17.0
   lints: ^1.0.1
+
+executables:
+  linter:

@@ -1,20 +1,13 @@
 import 'package:analyzer/dart/ast/ast.dart';
 import 'package:analyzer/dart/ast/visitor.dart';
 import 'package:analyzer/diagnostic/diagnostic.dart';
-import 'package:linting/cli.dart';
+import 'package:linting/foundation.dart';
 
-// dart example.dart analyze examples
-Future<void> main(List<String> args) async {
-  await CliRunner(commands: [
-    AnalyzeCommand(
-      rules: [_TestRule()],
-      reporters: [ConsoleReporter(print)],
-      analyzer: LintingAnalyzer(),
-    ),
-  ]).run(args);
-}
+final rules = <Rule>[
+  TestRule(),
+];
 
-class _TestRule extends Rule {
+class TestRule extends Rule {
   @override
   List<Issue> check(InternalResolvedUnitResult source) {
     final _visitor = _Visitor();
