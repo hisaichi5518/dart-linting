@@ -1,7 +1,7 @@
 name: linting
 description: linting is a framework for creating custom linters using the analyzer_plugin or cli.
 version: 1.0.0+1
-publish_to: none
+repository: https://github.com/hisaichi5518/dart-linting/
 
 environment:
   sdk: ">=2.13.0 <3.0.0"
