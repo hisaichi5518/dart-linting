@@ -25,16 +25,16 @@ class AnalysisOptions with _$AnalysisOptions {
 }
 
 class AnalysisOptionsLoader {
-  Future<AnalysisOptions> loadFromFile(File? file) async {
+  AnalysisOptions loadFromFile(File? file) {
     if (file == null || !file.existsSync()) {
       return const AnalysisOptions(options: {});
     }
 
-    return AnalysisOptions(options: await _loadFile(file));
+    return AnalysisOptions(options: _loadFile(file));
   }
 
-  Future<Map<String, Object>> _loadFile(File file) async {
-    final yamlMap = loadYaml(await file.readAsString());
+  Map<String, Object> _loadFile(File file) {
+    final yamlMap = loadYaml(file.readAsStringSync());
     return _yamlMapToDartMap(yamlMap);
   }
 

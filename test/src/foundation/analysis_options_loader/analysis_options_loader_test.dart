@@ -68,19 +68,19 @@ void main() {
 
   group('loadFromFile', () {
     test('has yaml', () async {
-      final options = await AnalysisOptionsLoader()
-          .loadFromFile(File("analysis_options.yaml"));
+      final options =
+          AnalysisOptionsLoader().loadFromFile(File("analysis_options.yaml"));
       expect(options.options["include"], "package:lints/recommended.yaml");
     });
 
     test('no yaml', () async {
-      final options = await AnalysisOptionsLoader()
+      final options = AnalysisOptionsLoader()
           .loadFromFile(File("analysis_options_not_found.yaml"));
       expect(options.options["include"], null);
     });
 
     test('null', () async {
-      final options = await AnalysisOptionsLoader().loadFromFile(null);
+      final options = AnalysisOptionsLoader().loadFromFile(null);
       expect(options.options["include"], null);
     });
   });

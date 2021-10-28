@@ -177,7 +177,7 @@ class AnalyzeCommand extends BaseCommand<_CommandRequest> {
       throw Exception("Can't find $analysisOptionsFile");
     }
 
-    final analysisOptions = await AnalysisOptionsLoader().loadFromFile(
+    final analysisOptions = AnalysisOptionsLoader().loadFromFile(
       analysisOptionsFile,
     );
     if (analysisOptions.lintingRules.isEmpty) {
