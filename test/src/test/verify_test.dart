@@ -3,6 +3,7 @@ import 'package:analyzer/dart/ast/visitor.dart';
 import 'package:analyzer/diagnostic/diagnostic.dart';
 import 'package:linting/foundation.dart';
 import 'package:linting/src/test/verify.dart';
+import 'package:linting/test.dart';
 import 'package:test/test.dart';
 
 class TestRule extends Rule {
@@ -51,14 +52,8 @@ class _Visitor extends RecursiveAstVisitor<void> {
 
 void main() {
   test('verifyInitialization', () async {
-    final unit =
-        await FileResolver.resolve('test/src/test/examples/error.dart');
-    final issues = TestRule().check(InternalResolvedUnitResult(
-      path: unit.path,
-      content: unit.content,
-      unit: unit.unit,
-      lineInfo: unit.lineInfo,
-    ));
+    final unit = await resolveTestFile('test/src/test/examples/error.dart');
+    final issues = TestRule().check(unit);
 
     verifyInitialization(
       issues: issues,
@@ -68,14 +63,8 @@ void main() {
   });
 
   test('verifyIssues', () async {
-    final unit =
-        await FileResolver.resolve('test/src/test/examples/error.dart');
-    final issues = TestRule().check(InternalResolvedUnitResult(
-      path: unit.path,
-      content: unit.content,
-      unit: unit.unit,
-      lineInfo: unit.lineInfo,
-    ));
+    final unit = await resolveTestFile('test/src/test/examples/error.dart');
+    final issues = TestRule().check(unit);
 
     verifyIssues(
       issues: issues,
