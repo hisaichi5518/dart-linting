@@ -7,7 +7,7 @@ environment:
   sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
-  linting: ^1.0.0+5
+  linting: ^1.0.0+6
 
 dev_dependencies:
   lints: ^1.0.1
