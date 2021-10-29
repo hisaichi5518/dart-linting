@@ -27,9 +27,8 @@ class AnalyzeCommandContext {
   );
 
   Iterable<Rule> get rules {
-    return _rules.where((rule) => _analysisOptions
-        .lintingRules(_optionKey)
-        .contains(rule.ruleId));
+    return _rules.where((rule) =>
+        _analysisOptions.lintingRules(_optionKey).contains(rule.ruleId));
   }
 
   Iterable<String> get excludes {
