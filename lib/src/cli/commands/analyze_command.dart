@@ -26,7 +26,7 @@ class _CommandRequest {
 
   Iterable<Rule> get rules {
     return _rules
-        .where((rule) => _analysisOptions.lintingRules.contains(rule.ruleId));
+        .where((rule) => _analysisOptions.lintingRules().contains(rule.ruleId));
   }
 
   Iterable<AnalyzeReporter> get reporters {
@@ -178,7 +178,7 @@ class AnalyzeCommand extends BaseCommand<_CommandRequest> {
     final analysisOptions = AnalysisOptionsLoader().loadFromFile(
       analysisOptionsFile,
     );
-    if (analysisOptions.lintingRules.isEmpty) {
+    if (analysisOptions.lintingRules().isEmpty) {
       throw Exception('linting.rules is empty on $analysisOptionsFile');
     }
 

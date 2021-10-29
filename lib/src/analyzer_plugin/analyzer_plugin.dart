@@ -113,7 +113,7 @@ class LintingAnalyzerPlugin extends ServerPlugin {
     final analysisOptions = AnalysisOptionsLoader().loadFromFile(
       analysisOptionsFile,
     );
-    if (analysisOptions.lintingRules.isEmpty) {
+    if (analysisOptions.lintingRules().isEmpty) {
       final error = _sendStateErrorNotification(
         'linting.rules is empty on $analysisOptionsFile',
       );

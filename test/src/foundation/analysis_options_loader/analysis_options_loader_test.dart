@@ -42,26 +42,35 @@ void main() {
             'rules': ['test-rule']
           },
         });
-        expect(options.lintingRules, ['test-rule']);
+        expect(options.lintingRules(), ['test-rule']);
       });
 
       test('empty', () async {
         final options = AnalysisOptions(options: {
           'linting': {'rules': []},
         });
-        expect(options.lintingRules, []);
+        expect(options.lintingRules(), []);
       });
 
       test('rules is null', () async {
         final options = AnalysisOptions(options: {
           'linting': {},
         });
-        expect(options.lintingRules, []);
+        expect(options.lintingRules(), []);
       });
 
       test('parent is null', () async {
         final options = AnalysisOptions(options: {});
-        expect(options.lintingRules, []);
+        expect(options.lintingRules(), []);
+      });
+
+      test('set key', () async {
+        final options = AnalysisOptions(options: {
+          'key-name': {
+            'rules': ['test-rule']
+          },
+        });
+        expect(options.lintingRules(key: 'key-name'), ['test-rule']);
       });
     });
   });
