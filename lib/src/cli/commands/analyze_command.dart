@@ -184,7 +184,7 @@ class AnalyzeCommand extends BaseCommand<_CommandRequest> {
       analysisOptionsFile,
     );
     if (analysisOptions.lintingRules(optionKey).isEmpty) {
-      throw Exception('linting.rules is empty on $analysisOptionsFile');
+      throw Exception('$optionKey.rules is empty on $analysisOptionsFile');
     }
 
     return analysisOptions;
