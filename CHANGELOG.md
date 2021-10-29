@@ -1,3 +1,7 @@
+## 1.0.0+5
+
+- Fix error message
+
 ## 1.0.0+4
 
 - Add optionKey
