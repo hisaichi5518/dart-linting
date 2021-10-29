@@ -7,6 +7,8 @@ import 'package:linting/test.dart';
 import 'package:test/test.dart';
 
 class TestRule extends Rule {
+  const TestRule();
+
   @override
   List<Issue> check(InternalResolvedUnitResult source) {
     final _visitor = _Visitor();

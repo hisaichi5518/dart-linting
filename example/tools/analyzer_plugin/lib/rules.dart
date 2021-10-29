@@ -3,11 +3,13 @@ import 'package:analyzer/dart/ast/visitor.dart';
 import 'package:analyzer/diagnostic/diagnostic.dart';
 import 'package:linting/foundation.dart';
 
-final rules = <Rule>[
+const rules = <Rule>[
   TestRule(),
 ];
 
 class TestRule extends Rule {
+  const TestRule();
+
   @override
   List<Issue> check(InternalResolvedUnitResult source) {
     final _visitor = _Visitor();
