@@ -8,6 +8,8 @@ import 'issue.dart';
 import 'replacement.dart';
 
 abstract class Rule {
+  const Rule();
+
   Issue createIssue({
     required SourceSpan location,
     required String message,
