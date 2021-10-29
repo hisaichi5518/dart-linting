@@ -1,3 +1,7 @@
+## 1.0.0+4
+
+- Add optionKey
+
 ## 1.0.0+3
 
 - Fix README
