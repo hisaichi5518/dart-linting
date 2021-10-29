@@ -1,6 +1,7 @@
 ## 1.0.0+5
 
 - Fix error message
+- Add linting/test
 
 ## 1.0.0+4
 
