@@ -1,3 +1,7 @@
+## 1.0.0+6
+
+- make const
+
 ## 1.0.0+5
 
 - Fix error message
