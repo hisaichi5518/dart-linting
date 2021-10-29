@@ -15,6 +15,7 @@ class AnalyzeCommandContext {
   final AnalysisDriver _driver;
   final ResolvedUnitResult analysisResult;
   final PluginCommunicationChannel channel;
+  final String? _optionKey;
 
   const AnalyzeCommandContext(
     this._analysisOptions,
@@ -22,11 +23,13 @@ class AnalyzeCommandContext {
     this._driver,
     this.analysisResult,
     this.channel,
+    this._optionKey,
   );
 
   Iterable<Rule> get rules {
-    return _rules
-        .where((rule) => _analysisOptions.lintingRules().contains(rule.ruleId));
+    return _rules.where((rule) => _analysisOptions
+        .lintingRules(_optionKey)
+        .contains(rule.ruleId));
   }
 
   Iterable<String> get excludes {

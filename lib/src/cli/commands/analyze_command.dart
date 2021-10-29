@@ -16,17 +16,19 @@ class _CommandRequest {
   final ArgResults _argResults;
   final Iterable<AnalyzeReporter> _reporters;
   final Iterable<Rule> _rules;
+  final String? _optionKey;
 
   _CommandRequest(
     this._analysisOptions,
     this._argResults,
     this._reporters,
     this._rules,
+    this._optionKey,
   );
 
   Iterable<Rule> get rules {
-    return _rules
-        .where((rule) => _analysisOptions.lintingRules().contains(rule.ruleId));
+    return _rules.where((rule) =>
+        _analysisOptions.lintingRules(_optionKey).contains(rule.ruleId));
   }
 
   Iterable<AnalyzeReporter> get reporters {
@@ -63,6 +65,7 @@ class AnalyzeCommand extends BaseCommand<_CommandRequest> {
   final Iterable<Rule> rules;
   final Iterable<AnalyzeReporter> reporters;
   final LintingAnalyzer analyzer;
+  final String? optionKey;
 
   @override
   String get description => 'Collect rules violations';
@@ -78,6 +81,7 @@ class AnalyzeCommand extends BaseCommand<_CommandRequest> {
     required this.rules,
     required this.reporters,
     required this.analyzer,
+    this.optionKey,
   }) {
     if (rules.isEmpty) {
       throw Exception("rule is empty!");
@@ -94,10 +98,11 @@ class AnalyzeCommand extends BaseCommand<_CommandRequest> {
     validateTargetDirectories();
 
     final request = _CommandRequest(
-      await _loadAnalysisOptions(),
+      await _loadAnalysisOptions(optionKey),
       argResults!,
       reporters,
       rules,
+      optionKey,
     );
     request.validate();
     return request;
@@ -166,7 +171,7 @@ class AnalyzeCommand extends BaseCommand<_CommandRequest> {
       );
   }
 
-  Future<AnalysisOptions> _loadAnalysisOptions() async {
+  Future<AnalysisOptions> _loadAnalysisOptions(String? optionKey) async {
     final analysisOptionsFile = File(join(
       argResults![CommonCommandOptions.rootFolder],
       'analysis_options.yaml',
@@ -178,7 +183,7 @@ class AnalyzeCommand extends BaseCommand<_CommandRequest> {
     final analysisOptions = AnalysisOptionsLoader().loadFromFile(
       analysisOptionsFile,
     );
-    if (analysisOptions.lintingRules().isEmpty) {
+    if (analysisOptions.lintingRules(optionKey).isEmpty) {
       throw Exception('linting.rules is empty on $analysisOptionsFile');
     }
 

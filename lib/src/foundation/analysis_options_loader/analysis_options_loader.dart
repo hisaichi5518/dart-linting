@@ -18,8 +18,9 @@ class AnalysisOptions with _$AnalysisOptions {
     return (parent['exclude'] as List?)?.cast<String>() ?? [];
   }
 
-  Iterable<String> lintingRules({String key = 'linting'}) {
-    final parent = (options[key] as Map?)?.cast<String, dynamic>() ?? {};
+  Iterable<String> lintingRules(String? optionKey) {
+    final parent =
+        (options[optionKey ?? 'linting'] as Map?)?.cast<String, dynamic>() ?? {};
     return (parent['rules'] as List?)?.cast<String>() ?? [];
   }
 }

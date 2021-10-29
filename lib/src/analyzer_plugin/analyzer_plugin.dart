@@ -17,6 +17,7 @@ import 'package:linting/src/analyzer_plugin/commands/analyze_command.dart';
 class LintingAnalyzerPlugin extends ServerPlugin {
   final Iterable<Rule> rules;
   final AnalyzeCommand analyzeCommand;
+  final String? optionKey;
 
   @override
   final String contactInfo;
@@ -37,6 +38,7 @@ class LintingAnalyzerPlugin extends ServerPlugin {
     this.fileGlobsToAnalyze = const ['*.dart'],
     this.name = 'LintingAnalyzerPlugin',
     this.version = '1.0.0-alpha.0',
+    this.optionKey,
   }) : super(PhysicalResourceProvider.INSTANCE);
 
   @override
@@ -65,7 +67,7 @@ class LintingAnalyzerPlugin extends ServerPlugin {
         as DriverBasedAnalysisContext;
     final dartDriver = context.driver;
 
-    final options = _loadAnalysisOptions(contextRoot.optionsFile);
+    final options = _loadAnalysisOptions(contextRoot.optionsFile, optionKey);
 
     runZonedGuarded(
       () {
@@ -80,6 +82,7 @@ class LintingAnalyzerPlugin extends ServerPlugin {
                 dartDriver,
                 analysisResult,
                 channel,
+                optionKey,
               ),
             );
           }
@@ -96,7 +99,7 @@ class LintingAnalyzerPlugin extends ServerPlugin {
     return dartDriver;
   }
 
-  AnalysisOptions _loadAnalysisOptions(String? optionsFile) {
+  AnalysisOptions _loadAnalysisOptions(String? optionsFile, String? optionKey) {
     if (optionsFile == null) {
       final error = _sendStateErrorNotification("Can't find options file");
       throw error;
@@ -113,7 +116,7 @@ class LintingAnalyzerPlugin extends ServerPlugin {
     final analysisOptions = AnalysisOptionsLoader().loadFromFile(
       analysisOptionsFile,
     );
-    if (analysisOptions.lintingRules().isEmpty) {
+    if (analysisOptions.lintingRules(optionKey).isEmpty) {
       final error = _sendStateErrorNotification(
         'linting.rules is empty on $analysisOptionsFile',
       );
