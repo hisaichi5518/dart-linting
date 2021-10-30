@@ -1,3 +1,7 @@
+## 1.0.1
+
+- Fix test package
+
 ## 1.0.0+6
 
 - make const
