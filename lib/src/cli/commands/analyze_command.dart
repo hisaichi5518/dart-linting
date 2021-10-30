@@ -122,6 +122,9 @@ class AnalyzeCommand extends BaseCommand<_CommandRequest> {
       final files = directory.listSync(recursive: true);
 
       for (final file in files) {
+        if (file is Directory) {
+          continue;
+        }
         final result = await _analyze(
           AnalyzerConfig(
             rules: rules,
