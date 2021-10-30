@@ -122,7 +122,7 @@ class AnalyzeCommand extends BaseCommand<_CommandRequest> {
       final files = directory.listSync(recursive: true);
 
       for (final file in files) {
-        if (file is Directory) {
+        if (file is Directory || !file.path.endsWith('.dart')) {
           continue;
         }
         final result = await _analyze(
