@@ -118,7 +118,7 @@ class LintingAnalyzerPlugin extends ServerPlugin {
     );
     if (analysisOptions.lintingRules(optionKey).isEmpty) {
       final error = _sendStateErrorNotification(
-        '$optionKey.rules is empty on $analysisOptionsFile',
+        '${optionKey ?? 'linting'}.rules is empty on $analysisOptionsFile',
       );
       throw error;
     }
