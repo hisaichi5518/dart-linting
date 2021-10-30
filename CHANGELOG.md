@@ -1,3 +1,7 @@
+## 1.0.2
+
+- skip if file is Directory
+
 ## 1.0.1
 
 - Fix test package
