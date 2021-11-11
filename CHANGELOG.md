@@ -1,13 +1,8 @@
 ## 1.3.0
 
-# What's Changed
-
 * No changes
 
-
 ## 1.2.0
-
-# What's Changed
 
 * Add release drafter (#5) @hisaichi5518
 * Add .github/release-drafter.yml (#4) @hisaichi5518
