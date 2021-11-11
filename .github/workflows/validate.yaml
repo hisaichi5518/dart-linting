@@ -1,9 +1,6 @@
 name: validate all packages
 on:
-  pull_request:
   push:
-    branches:
-      - main
 
 jobs:
   analyze:
