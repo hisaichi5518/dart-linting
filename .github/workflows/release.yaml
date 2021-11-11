@@ -1,0 +1,71 @@
+name: Release
+
+on:
+  workflow_run:
+    # Note: This event will only trigger a workflow run if the workflow file is on the default branch.
+    # https://docs.github.com/en/actions/reference/events-that-trigger-workflows#workflow_run
+    workflows: ["validate all packages"]
+    branches:
+      - release/*
+    types:
+      - completed
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check workflow status
+        if: |
+          github.event_name == 'workflow_run' &&
+          github.event.workflow_run.conclusion == 'failure'
+        run: exit 1
+
+      - uses: actions/checkout@v2
+      - name: set versions
+        id: versions
+        run: |
+          previous_version=$(python ./.github/workflows/scripts/get_current_version.py pubspec.yaml)
+          next_version=$(python ./.github/workflows/scripts/get_next_version.py $previous_version)
+
+          echo "::set-output name=previous_version::$previous_version"
+          echo "::set-output name=next_version::$next_version"
+      - name: Extract branch name
+        shell: bash
+        run: echo "::set-output name=branch::${GITHUB_REF#refs/heads/}"
+        id: extract_branch
+
+      - uses: release-drafter/release-drafter@v5
+        id: draft
+        with:
+          publish: false
+          name: ${{ steps.versions.outputs.next_version }}
+          tag: ${{ steps.versions.outputs.next_version }}
+          version: ${{ steps.versions.outputs.next_version }}
+          commitish: ${{ steps.extract_branch.outputs.branch }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: override versions
+        env:
+          NEXT_VERSION: ${{ steps.versions.outputs.next_version }}
+          CHANGELOG: ${{ steps.draft.outputs.body }}
+        run: |
+          python .github/workflows/scripts/override_pubspec_version.py pubspec.yaml $NEXT_VERSION
+          python .github/workflows/scripts/override_pubspec_version.py example/pubspec.yaml $NEXT_VERSION
+          python .github/workflows/scripts/override_pubspec_version.py example/tools/analyzer_plugin/pubspec.yaml $NEXT_VERSION
+          python .github/workflows/scripts/override_changelog.py $NEXT_VERSION "$CHANGELOG"
+          git add .
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git commit -m 'update version'
+          git push
+
+      - uses: release-drafter/release-drafter@v5
+        with:
+          publish: true
+          name: ${{ steps.versions.outputs.next_version }}
+          tag: ${{ steps.versions.outputs.next_version }}
+          version: ${{ steps.versions.outputs.next_version }}
+          commitish: ${{ steps.extract_branch.outputs.branch }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
