@@ -36,6 +36,19 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: override versions
+        env:
+          NEXT_VERSION: ${{ steps.versions.outputs.next_version }}
+          CHANGELOG: ${{ steps.draft.outputs.body }}
+        run: |
+          python .github/workflows/scripts/override_pubspec_version.py pubspec.yaml $NEXT_VERSION
+          python .github/workflows/scripts/override_pubspec_version.py example/pubspec.yaml $NEXT_VERSION
+          python .github/workflows/scripts/override_pubspec_version.py example/tools/analyzer_plugin/pubspec.yaml $NEXT_VERSION
+          python .github/workflows/scripts/override_changelog.py $NEXT_VERSION $CHANGELOG
+          git add .
+          git commit -m 'update version'
+          git push
+
       - name: show changelog
         env:
           CHANGELOG: ${{ steps.draft.outputs.body }}

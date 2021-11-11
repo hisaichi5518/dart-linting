@@ -30,3 +30,10 @@ def override_version(pubspec_yaml, version):
         f.write(text)
 
     return version
+
+def override_changelog(changelog_path, next_version, changelog):
+    with open(changelog_path, 'r') as f:
+        text = f.read()
+        text = '## %s\n\n%s\n\n%s' % (next_version, changelog, text)
+    with open(changelog_path, 'w') as f:
+        f.write(text)
