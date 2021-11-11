@@ -1,3 +1,9 @@
+## 1.2.1
+
+* update readme (#8) @hisaichi5518
+* Release/1.2.0 (#7) @hisaichi5518
+
+
 ## 1.2.0
 
 * Revert version (#6) @hisaichi5518
