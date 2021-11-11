@@ -1,16 +1,3 @@
-## 1.3.0
-
-* No changes
-
-## 1.2.0
-
-* Add release drafter (#5) @hisaichi5518
-* Add .github/release-drafter.yml (#4) @hisaichi5518
-* Remove melos (#3) @hisaichi5518
-* override github url (#2) @hisaichi5518
-* Use github (#1) @hisaichi5518
-
-
 ## 1.1.0
 
 - Use AnalysisContextCollection
