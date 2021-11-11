@@ -25,6 +25,7 @@ def get_next_version(version):
 def override_version(pubspec_yaml, version):
     with open(pubspec_yaml, 'r') as f:
         text = re.sub(r'refs/tags/[0-9.]+', 'refs/tags/%s' % version, f.read())
+        text = re.sub(r'version: [0-9.]+', 'version: %s' % version, text)
     with open(pubspec_yaml, 'w') as f:
         f.write(text)
 
