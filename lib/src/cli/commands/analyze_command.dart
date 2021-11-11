@@ -151,6 +151,10 @@ class AnalyzeCommand extends BaseCommand<_CommandRequest> {
     }
 
     reporter.report(resultList);
+
+    if (resultList.any((element) => element.issues.isNotEmpty)) {
+      exit(1);
+    }
   }
 
   void _addFlags() {
