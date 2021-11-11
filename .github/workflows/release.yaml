@@ -1,16 +1,26 @@
 name: Release
 
 on:
-  push:
+  workflow_run:
+    # Note: This event will only trigger a workflow run if the workflow file is on the default branch.
+    # https://docs.github.com/en/actions/reference/events-that-trigger-workflows#workflow_run
+    workflows: ["validate all packages"]
     branches:
       - release/*
       - add-release-drafter
-  # TODO: Completed tests
+    types:
+      - completed
 
 jobs:
   release:
     runs-on: ubuntu-latest
     steps:
+      - name: Check workflow status
+        if: |
+          github.event_name == 'workflow_run' &&
+          github.event.workflow_run.conclusion == 'failure'
+        run: exit 1
+
       - uses: actions/checkout@v2
       - name: set versions
         id: versions
