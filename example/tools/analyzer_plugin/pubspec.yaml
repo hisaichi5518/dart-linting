@@ -1,6 +1,6 @@
 name: linting_example_plugin_loader
 description: This pubspec determines the version of the analyzer plugin to load.
-version: 1.0.0
+version: 1.2.0
 publish_to: none
 
 environment:
@@ -11,7 +11,7 @@ dependencies:
     git:
       url: git@github.com:hisaichi5518/dart-linting.git
       path: .
-      ref: refs/tags/1.1.0
+      ref: refs/tags/1.2.0
 
 dev_dependencies:
   lints: ^1.0.1
