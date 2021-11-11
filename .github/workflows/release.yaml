@@ -44,7 +44,7 @@ jobs:
           python .github/workflows/scripts/override_pubspec_version.py pubspec.yaml $NEXT_VERSION
           python .github/workflows/scripts/override_pubspec_version.py example/pubspec.yaml $NEXT_VERSION
           python .github/workflows/scripts/override_pubspec_version.py example/tools/analyzer_plugin/pubspec.yaml $NEXT_VERSION
-          python .github/workflows/scripts/override_changelog.py $NEXT_VERSION $CHANGELOG
+          python .github/workflows/scripts/override_changelog.py $NEXT_VERSION "$CHANGELOG"
           git add .
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
