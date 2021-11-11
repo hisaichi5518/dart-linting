@@ -49,27 +49,6 @@ jobs:
           git commit -m 'update version'
           git push
 
-      - name: show changelog
-        env:
-          CHANGELOG: ${{ steps.draft.outputs.body }}
-          TAG_NAME: ${{ steps.draft.outputs.tag_name }}
-          NAME: ${{ steps.draft.outputs.name }}
-          PREVIOUS_VERSION: ${{ steps.versions.outputs.previous_version }}
-          NEXT_VERSION: ${{ steps.versions.outputs.next_version }}
-        run: |
-          echo "$TAG_NAME"
-          echo "$NAME"
-          echo "$CHANGELOG"
-          echo "$PREVIOUS_VERSION"
-          echo "$NEXT_VERSION"
-
-      # TODO: get previous version and next version
-      # TODO: override to next version
-      # TODO: git commit & push
-      # TODO: git tag $next_version
-      # TODO: git push
-      # TODO: git push --tags
-
       - uses: release-drafter/release-drafter@v5
         with:
           publish: true
