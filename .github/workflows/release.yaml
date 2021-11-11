@@ -31,10 +31,6 @@ jobs:
 
           echo "::set-output name=previous_version::$previous_version"
           echo "::set-output name=next_version::$next_version"
-      - name: show branch name
-        env:
-          BRANCH_NAME: ${{ github.event.workflow_run.head_branch }}
-        run: echo $BRANCH_NAME
 
       - uses: release-drafter/release-drafter@v5
         id: draft
@@ -51,6 +47,7 @@ jobs:
         env:
           NEXT_VERSION: ${{ steps.versions.outputs.next_version }}
           CHANGELOG: ${{ steps.draft.outputs.body }}
+          BRANCH_NAME: ${{ github.event.workflow_run.head_branch }}
         run: |
           python .github/workflows/scripts/override_pubspec_version.py pubspec.yaml $NEXT_VERSION
           python .github/workflows/scripts/override_pubspec_version.py example/pubspec.yaml $NEXT_VERSION
@@ -60,7 +57,7 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git commit -m 'update version'
-          git push
+          git push origin HEAD:$BRANCH_NAME
 
       - uses: release-drafter/release-drafter@v5
         with:
