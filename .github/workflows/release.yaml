@@ -41,7 +41,7 @@ jobs:
           commitish: ${{ github.event.workflow_run.head_branch }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
+          GITHUB_REF: refs/head/${{ github.event.workflow_run.head_branch }}
       - name: override versions
         env:
           NEXT_VERSION: ${{ steps.versions.outputs.next_version }}
@@ -67,3 +67,4 @@ jobs:
           commitish: ${{ github.event.workflow_run.head_branch }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REF: refs/head/${{ github.event.workflow_run.head_branch }}
