@@ -1,3 +1,8 @@
+## 1.1.0
+
+- Use AnalysisContextCollection
+- exit 1 if has issues
+
 ## 1.0.2
 
 - skip if file is Directory
