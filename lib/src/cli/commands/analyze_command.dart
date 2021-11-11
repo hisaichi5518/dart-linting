@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:analyzer/dart/analysis/analysis_context_collection.dart';
+import 'package:analyzer/dart/analysis/results.dart';
 import 'package:args/args.dart';
 import 'package:path/path.dart';
 
@@ -117,42 +119,38 @@ class AnalyzeCommand extends BaseCommand<_CommandRequest> {
     final reporter = request.reporters.first;
 
     final resultList = <AnalyzedResult>[];
-    for (final dirname in foldersToAnalyze) {
-      final directory = Directory(dirname);
-      final files = directory.listSync(recursive: true);
 
-      for (final file in files) {
-        if (file is Directory || !file.path.endsWith('.dart')) {
+    final contextCollection = AnalysisContextCollection(
+      includedPaths: foldersToAnalyze
+          .map((path) => normalize(join(rootFolder, path)))
+          .toList(),
+    );
+
+    for (final context in contextCollection.contexts) {
+      // TODO: load analysis options from context
+      // TODO: skip exludes files
+      final analyzedFiles = context.contextRoot.analyzedFiles().toSet();
+      for (final filePath in analyzedFiles) {
+        if (!filePath.endsWith('.dart')) {
           continue;
         }
-        final result = await _analyze(
-          AnalyzerConfig(
-            rules: rules,
-            excludes: excludes,
-            rootFolder: rootFolder,
-          ),
-          analyzer,
-          file,
-        );
-        resultList.add(result);
+        final unit = await context.currentSession.getResolvedUnit(filePath);
+        if (unit is ResolvedUnitResult) {
+          final result = await analyzer.analyze(
+            AnalyzerConfig(
+              rules: rules,
+              excludes: excludes,
+              rootFolder: rootFolder,
+            ),
+            unit,
+            filePath: filePath,
+          );
+          resultList.add(result);
+        }
       }
     }
 
     reporter.report(resultList);
-  }
-
-  Future<AnalyzedResult> _analyze(
-    AnalyzerConfig config,
-    LintingAnalyzer analyzer,
-    FileSystemEntity file,
-  ) async {
-    final filePath = file.path;
-    final resolvedUnitResult = await FileResolver.resolve(filePath);
-    return await analyzer.analyze(
-      config,
-      resolvedUnitResult,
-      filePath: filePath,
-    );
   }
 
   void _addFlags() {
