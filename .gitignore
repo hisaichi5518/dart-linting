@@ -30,3 +30,4 @@ flutter_export_environment.sh
 .env.test.local
 .env.production.local
 build/
+*.pyc
