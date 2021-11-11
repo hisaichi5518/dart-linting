@@ -7,7 +7,7 @@ environment:
   sdk: ">=2.13.0 <3.0.0"
 
 dependencies:
-  linting: ^1.0.2
+  linting: ^1.1.0
   linting_example_plugin_loader:
     path: tools/analyzer_plugin
 
