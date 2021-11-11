@@ -7,7 +7,6 @@ on:
     workflows: ["validate all packages"]
     branches:
       - release/*
-      - add-release-drafter
     types:
       - completed
 
