@@ -31,10 +31,10 @@ jobs:
 
           echo "::set-output name=previous_version::$previous_version"
           echo "::set-output name=next_version::$next_version"
-      - name: Extract branch name
-        shell: bash
-        run: echo "::set-output name=branch::${GITHUB_REF#refs/heads/}"
-        id: extract_branch
+      - name: show branch name
+        env:
+          BRANCH_NAME: ${{ github.event.workflow_run.head_branch }}
+        run: echo $BRANCH_NAME
 
       - uses: release-drafter/release-drafter@v5
         id: draft
@@ -43,7 +43,7 @@ jobs:
           name: ${{ steps.versions.outputs.next_version }}
           tag: ${{ steps.versions.outputs.next_version }}
           version: ${{ steps.versions.outputs.next_version }}
-          commitish: ${{ steps.extract_branch.outputs.branch }}
+          commitish: ${{ github.event.workflow_run.head_branch }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -51,7 +51,7 @@ jobs:
         env:
           NEXT_VERSION: ${{ steps.versions.outputs.next_version }}
           CHANGELOG: ${{ steps.draft.outputs.body }}
-          BRANCH_NAME: ${{ steps.extract_branch.outputs.branch }}
+          BRANCH_NAME: ${{ github.event.workflow_run.head_branch }}
         run: |
           python .github/workflows/scripts/override_pubspec_version.py pubspec.yaml $NEXT_VERSION
           python .github/workflows/scripts/override_pubspec_version.py example/pubspec.yaml $NEXT_VERSION
@@ -69,6 +69,6 @@ jobs:
           name: ${{ steps.versions.outputs.next_version }}
           tag: ${{ steps.versions.outputs.next_version }}
           version: ${{ steps.versions.outputs.next_version }}
-          commitish: ${{ steps.extract_branch.outputs.branch }}
+          commitish: ${{ github.event.workflow_run.head_branch }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
