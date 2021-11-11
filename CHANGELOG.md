@@ -1,3 +1,10 @@
+## 1.3.0
+
+# What's Changed
+
+* No changes
+
+
 ## 1.2.0
 
 # What's Changed
