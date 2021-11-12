@@ -33,7 +33,9 @@ The complete code can be found at [example](https://github.com/hisaichi5518/dart
 ## Release
 
 - create and push release branch. (ex, `release/1.2.0`)
-- wait for the release action to finish.
-- git pull
+- Update CHANGELOG.md
+- Update pubspec.yaml
+- Create tag
+- Create release
 - run `dart pub publish`
 - merge release branch.
