@@ -29,9 +29,7 @@ jobs:
       - run: ./.github/workflows/scripts/install-tools.sh
       - name: "Format"
         run: |
-          dart format -o write .
-          ./.github/workflows/scripts/validate-formatting.sh
-
+          dart format --set-exit-if-changed .
 
   test_on_linux:
     runs-on: ubuntu-latest
