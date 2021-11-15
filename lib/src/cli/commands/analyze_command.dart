@@ -10,6 +10,7 @@ import '../analyze_reporter.dart';
 import 'models/base_command.dart';
 import 'models/common_command_options.dart';
 import 'models/exit_command_exception.dart';
+import 'models/invalid_argument_exception.dart';
 
 const String _reporter = 'reporter';
 
@@ -170,14 +171,14 @@ class AnalyzeCommand extends BaseCommand<_CommandRequest> {
       'analysis_options.yaml',
     ));
     if (!analysisOptionsFile.existsSync()) {
-      throw Exception("Can't find $analysisOptionsFile");
+      throw InvalidArgumentException("Can't find $analysisOptionsFile");
     }
 
     final analysisOptions = AnalysisOptionsLoader().loadFromFile(
       analysisOptionsFile,
     );
     if (analysisOptions.lintingRules(optionKey).isEmpty) {
-      throw Exception(
+      throw InvalidArgumentException(
         '${optionKey ?? 'linting'}.rules is empty on $analysisOptionsFile',
       );
     }
