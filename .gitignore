@@ -31,3 +31,5 @@ flutter_export_environment.sh
 .env.production.local
 build/
 *.pyc
+coverage
+coverage.lcov
