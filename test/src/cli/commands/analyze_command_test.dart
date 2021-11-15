@@ -95,7 +95,46 @@ void main() {
   });
 
   group('run', () {
-    test('has error', () async {
+    test('no options', () async {
+      final command = AnalyzeCommand(
+        analyzer: LintingAnalyzer(),
+        reporters: [ConsoleReporter((object) {})],
+        rules: [_TestRule()],
+      );
+      final runner = CommandRunner('test', 'A test command runner.');
+      runner.addCommand(command);
+      expect(
+        runner.run([
+          'analyze',
+          'examples',
+        ]).catchError((error) {
+          expect(error, isA<UsageException>());
+        }),
+        completes,
+      );
+    });
+
+    test('invalid options', () async {
+      final command = AnalyzeCommand(
+        analyzer: LintingAnalyzer(),
+        reporters: [ConsoleReporter((object) {})],
+        rules: [_TestRule()],
+      );
+      final runner = CommandRunner('test', 'A test command runner.');
+      runner.addCommand(command);
+      expect(
+        runner.run([
+          'analyze',
+          'examples',
+          '--root-folder=test/src/cli/commands/examples',
+        ]).catchError((error) {
+          expect(error, isA<UsageException>());
+        }),
+        completes,
+      );
+    });
+
+    test('root-folder', () async {
       final command = AnalyzeCommand(
         analyzer: LintingAnalyzer(),
         reporters: [ConsoleReporter((object) {})],
@@ -108,6 +147,27 @@ void main() {
           'analyze',
           'examples',
           '--root-folder=test/src/cli/commands/',
+        ]).catchError((error) {
+          expect(error, isA<ExitCommandException>());
+        }),
+        completes,
+      );
+    });
+
+    test('reporter', () async {
+      final command = AnalyzeCommand(
+        analyzer: LintingAnalyzer(),
+        reporters: [ConsoleReporter((object) {})],
+        rules: [_TestRule()],
+      );
+      final runner = CommandRunner('test', 'A test command runner.');
+      runner.addCommand(command);
+      expect(
+        runner.run([
+          'analyze',
+          'examples',
+          '--root-folder=test/src/cli/commands/',
+          '--reporter=console'
         ]).catchError((error) {
           expect(error, isA<ExitCommandException>());
         }),
