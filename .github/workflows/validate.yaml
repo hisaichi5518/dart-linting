@@ -40,6 +40,9 @@ jobs:
         with:
           channel: stable
       - run: ./.github/workflows/scripts/install-tools.sh
+      - uses: stelynx/dart-full-coverage@v1
+        with:
+          package: linting
       - run: dart pub global activate coverage
       - run: dart test --coverage="coverage"
       - run: format_coverage --lcov --in=coverage --out=coverage/coverage.lcov --packages=.packages --report-on=lib
