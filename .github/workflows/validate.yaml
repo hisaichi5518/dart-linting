@@ -40,7 +40,7 @@ jobs:
         with:
           channel: stable
       - run: ./.github/workflows/scripts/install-tools.sh
-      - uses: stelynx/dart-full-coverage@v1
+      - uses: stelynx/dart-full-coverage@v1.0.5
         with:
           package: linting
       - run: dart pub global activate coverage
