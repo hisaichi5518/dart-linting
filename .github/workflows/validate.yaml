@@ -40,4 +40,11 @@ jobs:
         with:
           channel: stable
       - run: ./.github/workflows/scripts/install-tools.sh
-      - run: dart test
+      - run: dart pub global activate coverage
+      - run: dart test --coverage="coverage"
+      - run: format_coverage --lcov --in=coverage --out=coverage/coverage.lcov --packages=.packages --report-on=lib
+      - uses: codecov/codecov-action@v2
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: coverage/coverage.lcov
+          verbose: true
