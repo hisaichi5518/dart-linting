@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:args/command_runner.dart';
+import 'package:linting/cli.dart';
 
 class CliRunner extends CommandRunner<void> {
   CliRunner({
@@ -23,6 +24,8 @@ class CliRunner extends CommandRunner<void> {
       print('${e.message}\n');
       print('${e.usage}\n');
       exit(64);
+    } on ExitCommandException catch (e) {
+      exit(e.signal);
     } catch (e, stack) {
       print('linting has exited unexpectedly: "$e" $stack');
       exit(1);

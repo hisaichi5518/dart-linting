@@ -9,6 +9,7 @@ import '../../../foundation.dart';
 import '../analyze_reporter.dart';
 import 'models/base_command.dart';
 import 'models/common_command_options.dart';
+import 'models/exit_command_exception.dart';
 import 'models/invalid_argument_exception.dart';
 
 const String _reporter = 'reporter';
@@ -43,23 +44,12 @@ class _CommandRequest {
   }
 
   String get rootFolder {
-    return _argResults[CommonCommandOptions.rootFolder];
+    return absolute(_argResults[CommonCommandOptions.rootFolder]);
   }
 
   Iterable<String> get excludes {
     return _analysisOptions.analyzerExclude.toList()
       ..add(_argResults[CommonCommandOptions.exclude]);
-  }
-
-  Future<void> validate() async {
-    if (rules.isEmpty) {
-      throw InvalidArgumentException('The executable rules is empty.');
-    }
-    if (reporters.isEmpty) {
-      throw InvalidArgumentException(
-        "Can't find ${_argResults[_reporter]} reporter from reporters",
-      );
-    }
   }
 }
 
@@ -77,7 +67,7 @@ class AnalyzeCommand extends BaseCommand<_CommandRequest> {
 
   @override
   String get invocation =>
-      '${runner!.executableName} $name [arguments] <directories>';
+      '${runner?.executableName ?? '<command>'} $name [arguments] <directories>';
 
   AnalyzeCommand({
     required this.rules,
@@ -106,7 +96,6 @@ class AnalyzeCommand extends BaseCommand<_CommandRequest> {
       rules,
       optionKey,
     );
-    request.validate();
     return request;
   }
 
@@ -153,7 +142,7 @@ class AnalyzeCommand extends BaseCommand<_CommandRequest> {
     reporter.report(resultList);
 
     if (resultList.any((element) => element.issues.isNotEmpty)) {
-      exit(1);
+      throw ExitCommandException(1);
     }
   }
 
@@ -182,14 +171,14 @@ class AnalyzeCommand extends BaseCommand<_CommandRequest> {
       'analysis_options.yaml',
     ));
     if (!analysisOptionsFile.existsSync()) {
-      throw Exception("Can't find $analysisOptionsFile");
+      throw InvalidArgumentException("Can't find $analysisOptionsFile");
     }
 
     final analysisOptions = AnalysisOptionsLoader().loadFromFile(
       analysisOptionsFile,
     );
     if (analysisOptions.lintingRules(optionKey).isEmpty) {
-      throw Exception(
+      throw InvalidArgumentException(
         '${optionKey ?? 'linting'}.rules is empty on $analysisOptionsFile',
       );
     }
