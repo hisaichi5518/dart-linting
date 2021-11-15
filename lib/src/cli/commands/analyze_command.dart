@@ -10,7 +10,6 @@ import '../analyze_reporter.dart';
 import 'models/base_command.dart';
 import 'models/common_command_options.dart';
 import 'models/exit_command_exception.dart';
-import 'models/invalid_argument_exception.dart';
 
 const String _reporter = 'reporter';
 
@@ -50,17 +49,6 @@ class _CommandRequest {
   Iterable<String> get excludes {
     return _analysisOptions.analyzerExclude.toList()
       ..add(_argResults[CommonCommandOptions.exclude]);
-  }
-
-  Future<void> validate() async {
-    if (rules.isEmpty) {
-      throw InvalidArgumentException('The executable rules is empty.');
-    }
-    if (reporters.isEmpty) {
-      throw InvalidArgumentException(
-        "Can't find ${_argResults[_reporter]} reporter from reporters",
-      );
-    }
   }
 }
 
@@ -107,7 +95,6 @@ class AnalyzeCommand extends BaseCommand<_CommandRequest> {
       rules,
       optionKey,
     );
-    request.validate();
     return request;
   }
 
