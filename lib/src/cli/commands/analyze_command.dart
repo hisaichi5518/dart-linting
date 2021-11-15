@@ -9,6 +9,7 @@ import '../../../foundation.dart';
 import '../analyze_reporter.dart';
 import 'models/base_command.dart';
 import 'models/common_command_options.dart';
+import 'models/exit_command_exception.dart';
 import 'models/invalid_argument_exception.dart';
 
 const String _reporter = 'reporter';
@@ -43,7 +44,7 @@ class _CommandRequest {
   }
 
   String get rootFolder {
-    return _argResults[CommonCommandOptions.rootFolder];
+    return absolute(_argResults[CommonCommandOptions.rootFolder]);
   }
 
   Iterable<String> get excludes {
@@ -77,7 +78,7 @@ class AnalyzeCommand extends BaseCommand<_CommandRequest> {
 
   @override
   String get invocation =>
-      '${runner!.executableName} $name [arguments] <directories>';
+      '${runner?.executableName ?? '<command>'} $name [arguments] <directories>';
 
   AnalyzeCommand({
     required this.rules,
@@ -153,7 +154,7 @@ class AnalyzeCommand extends BaseCommand<_CommandRequest> {
     reporter.report(resultList);
 
     if (resultList.any((element) => element.issues.isNotEmpty)) {
-      exit(1);
+      throw ExitCommandException(1);
     }
   }
 
