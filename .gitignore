@@ -32,4 +32,3 @@ flutter_export_environment.sh
 build/
 *.pyc
 coverage
-coverage.lcov
