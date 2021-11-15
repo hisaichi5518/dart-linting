@@ -37,6 +37,9 @@ class AnalysisOptionsLoader {
 
   Map<String, Object> _loadFile(File file) {
     final yamlMap = loadYaml(file.readAsStringSync());
+    if (yamlMap == null) {
+      return {};
+    }
     return _yamlMapToDartMap(yamlMap);
   }
 

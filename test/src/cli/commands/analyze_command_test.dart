@@ -95,7 +95,7 @@ void main() {
   });
 
   group('run', () {
-    test('no options', () async {
+    test('cant find options', () async {
       final command = AnalyzeCommand(
         analyzer: LintingAnalyzer(),
         reporters: [ConsoleReporter((object) {})],
@@ -125,7 +125,7 @@ void main() {
       expect(
         runner.run([
           'analyze',
-          'examples',
+          '.',
           '--root-folder=test/src/cli/commands/examples',
         ]).catchError((error) {
           expect(error, isA<UsageException>());
