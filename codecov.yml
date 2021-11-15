@@ -1,6 +1,7 @@
 codecov:
   require_ci_to_pass: yes
 
+# https://docs.codecov.com/docs/coverage-configuration
 coverage:
   precision: 2
   round: down
