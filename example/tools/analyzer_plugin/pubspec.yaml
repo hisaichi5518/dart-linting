@@ -16,7 +16,7 @@ dependencies:
     git:
       url: git@github.com:hisaichi5518/dart-linting.git
       path: example
-      ref: fix-example
+      ref: main
 
 dev_dependencies:
   lints: ^1.0.1
