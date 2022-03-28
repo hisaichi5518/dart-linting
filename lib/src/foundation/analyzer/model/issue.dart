@@ -1,20 +1,24 @@
 import 'package:analyzer/diagnostic/diagnostic.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:source_span/source_span.dart';
 
 import 'replacement.dart';
 
-part 'issue.freezed.dart';
+class Issue {
+  final String ruleId;
+  final Uri documentation;
+  final SourceSpan location;
+  final Severity severity;
+  final String message;
+  final String? verboseMessage;
+  final Replacement? suggestion;
 
-@freezed
-class Issue with _$Issue {
-  const factory Issue({
-    required String ruleId,
-    required Uri documentation,
-    required SourceSpan location,
-    required Severity severity,
-    required String message,
-    String? verboseMessage,
-    Replacement? suggestion,
-  }) = _Issue;
+  const Issue({
+    required this.ruleId,
+    required this.documentation,
+    required this.location,
+    required this.severity,
+    required this.message,
+    this.verboseMessage,
+    this.suggestion,
+  });
 }

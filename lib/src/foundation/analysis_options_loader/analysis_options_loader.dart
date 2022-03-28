@@ -1,17 +1,13 @@
 import 'dart:io';
 
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:yaml/yaml.dart';
 
-part 'analysis_options_loader.freezed.dart';
+class AnalysisOptions {
+  final Map<String, Object> options;
 
-@freezed
-class AnalysisOptions with _$AnalysisOptions {
-  const AnalysisOptions._();
-
-  const factory AnalysisOptions({
-    required Map<String, Object> options,
-  }) = _AnalysisOptions;
+  const AnalysisOptions({
+    required this.options,
+  });
 
   Iterable<String> get analyzerExclude {
     final parent = (options['analyzer'] as Map?)?.cast<String, dynamic>() ?? {};
