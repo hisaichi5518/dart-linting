@@ -15,8 +15,8 @@ dependencies:
   simple_linter:
     git:
       url: git@github.com:hisaichi5518/dart-linting.git
-      path: examples/simple_linter/
-      ref: main
+      path: example
+      ref: fix-example
 
 dev_dependencies:
   lints: ^1.0.1

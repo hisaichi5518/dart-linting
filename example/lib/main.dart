@@ -1,4 +1,12 @@
-Future<void> main() async {
-  /// Example are located under the examples directory.
-  /// refs https://github.com/hisaichi5518/dart-linting/tree/main/examples
+import 'package:linting/cli.dart';
+import 'package:simple_linter/rules.dart';
+
+Future<void> main(List<String> args) async {
+  await CliRunner(commands: [
+    AnalyzeCommand(
+      rules: rules,
+      reporters: [ConsoleReporter(print)],
+      analyzer: LintingAnalyzer(),
+    ),
+  ]).run(args);
 }
