@@ -1,0 +1,21 @@
+name: simple_linter_user
+description: linter user
+version: 1.2.1
+publish_to: none
+
+environment:
+  sdk: ">=2.13.0 <3.0.0"
+
+dependencies:
+  simple_linter:
+    git:
+      url: git@github.com:hisaichi5518/dart-linting.git
+      path: examples/simple_linter
+      ref: analyze-plugin
+
+dev_dependencies:
+  test: ^1.17.0
+  lints: ^1.0.1
+
+executables:
+  linter:
