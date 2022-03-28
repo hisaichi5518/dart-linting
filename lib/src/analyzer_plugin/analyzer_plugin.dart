@@ -73,7 +73,7 @@ class LintingAnalyzerPlugin extends ServerPlugin {
       () {
         dartDriver.results.listen((analysisResult) {
           if (analysisResult is ErrorsResult && analysisResult.errors.isEmpty) {
-            dartDriver.getResult2(analysisResult.path);
+            dartDriver.getResult(analysisResult.path);
           } else if (analysisResult is ResolvedUnitResult) {
             analyzeCommand.runCommand(
               AnalyzeCommandContext(

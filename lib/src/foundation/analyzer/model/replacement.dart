@@ -1,11 +1,9 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+class Replacement {
+  final String comment;
+  final String replacement;
 
-part 'replacement.freezed.dart';
-
-@freezed
-class Replacement with _$Replacement {
-  const factory Replacement({
-    required String comment,
-    required String replacement,
-  }) = _Replacement;
+  const Replacement({
+    required this.comment,
+    required this.replacement,
+  });
 }

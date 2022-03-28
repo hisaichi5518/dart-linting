@@ -1,20 +1,18 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:glob/glob.dart';
 import 'package:path/path.dart';
 
 import 'rule.dart';
 
-part 'analyzer_config.freezed.dart';
+class AnalyzerConfig {
+  final Iterable<Rule> rules;
+  final Iterable<String> excludes;
+  final String rootFolder;
 
-@freezed
-class AnalyzerConfig with _$AnalyzerConfig {
-  const AnalyzerConfig._();
-
-  const factory AnalyzerConfig({
-    required Iterable<Rule> rules,
-    required Iterable<String> excludes,
-    required String rootFolder,
-  }) = _AnalyzerConfig;
+  const AnalyzerConfig({
+    required this.rules,
+    required this.excludes,
+    required this.rootFolder,
+  });
 
   Iterable<Glob> get excludePatterns {
     return excludes.map((exclude) {

@@ -1,13 +1,11 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
-
 import 'issue.dart';
 
-part 'analyzed_result.freezed.dart';
+class AnalyzedResult {
+  final String filePath;
+  final Iterable<Issue> issues;
 
-@freezed
-class AnalyzedResult with _$AnalyzedResult {
-  const factory AnalyzedResult({
-    required String filePath,
-    required Iterable<Issue> issues,
-  }) = _AnalyzedResult;
+  const AnalyzedResult({
+    required this.filePath,
+    required this.issues,
+  });
 }

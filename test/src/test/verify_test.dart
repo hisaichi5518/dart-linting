@@ -2,7 +2,6 @@ import 'package:analyzer/dart/ast/ast.dart';
 import 'package:analyzer/dart/ast/visitor.dart';
 import 'package:analyzer/diagnostic/diagnostic.dart';
 import 'package:linting/foundation.dart';
-import 'package:linting/src/test/verify.dart';
 import 'package:linting/test.dart';
 import 'package:test/test.dart';
 
