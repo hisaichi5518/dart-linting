@@ -11,7 +11,7 @@ dependencies:
     git:
       url: git@github.com:hisaichi5518/dart-linting.git
       path: .
-      ref: refs/tags/1.2.1
+      ref: analyze-plugin
 
 dev_dependencies:
   lints: ^1.0.1

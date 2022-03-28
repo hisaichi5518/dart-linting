@@ -1,5 +1,5 @@
 import 'package:linting/cli.dart';
-import 'package:linting_example_plugin_loader/rules.dart';
+import 'package:linting_example/rules.dart';
 
 Future<void> runCli(List<String> args) async {
   await CliRunner(commands: [
