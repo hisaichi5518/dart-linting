@@ -20,7 +20,7 @@ There are several ways to create custom rules, but each has its own disadvantage
 
 linting is a framework for solving these problems.
 
-## Getting Started
+## Get Started
 
 The complete code can be found at [examples](https://github.com/hisaichi5518/dart-linting/tree/main/examples)
 
