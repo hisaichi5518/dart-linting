@@ -22,7 +22,7 @@ linting is a framework for solving these problems.
 
 ## Getting Started
 
-The complete code can be found at [example](https://github.com/hisaichi5518/dart-linting/tree/main/example)
+The complete code can be found at [examples](https://github.com/hisaichi5518/dart-linting/tree/main/examples)
 
 ## TODO
 
