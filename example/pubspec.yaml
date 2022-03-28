@@ -1,6 +1,6 @@
 name: linting_example
 description: my custom linter(cli only)
-version: 1.2.1
+version: 0.0.1
 publish_to: none
 
 environment:
