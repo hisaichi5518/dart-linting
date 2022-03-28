@@ -1,3 +1,10 @@
+## 1.3.0
+
+* Fix readme (#18) @hisaichi5518
+* Add examples (#17) @hisaichi5518
+* Remove deprecated_member_use (#16) @hisaichi5518
+* Remove freezed (#15) @hisaihi5518
+
 ## 1.2.1
 
 * update readme (#8) @hisaichi5518
