@@ -1,5 +1,5 @@
-name: linting_example
-description: my custom linter(cli only)
+name: simple_linter_user
+description: linter user
 version: 1.2.1
 publish_to: none
 
@@ -7,12 +7,15 @@ environment:
   sdk: ">=2.13.0 <3.0.0"
 
 dependencies:
-  linting:
+  simple_linter:
     git:
       url: git@github.com:hisaichi5518/dart-linting.git
-      path: .
+      path: examples/simple_linter
       ref: main
 
 dev_dependencies:
   test: ^1.17.0
   lints: ^1.0.1
+
+executables:
+  linter:

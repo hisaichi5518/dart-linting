@@ -2,7 +2,7 @@ import 'dart:isolate';
 
 import 'package:analyzer_plugin/starter.dart';
 import 'package:linting/analyzer_plugin.dart';
-import 'package:linting_example_plugin_loader/rules.dart';
+import 'package:simple_linter/rules.dart';
 
 void main(List<String> args, SendPort sendPort) {
   ServerPluginStarter(LintingAnalyzerPlugin(

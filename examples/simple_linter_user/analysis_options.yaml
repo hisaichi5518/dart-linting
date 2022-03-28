@@ -1,4 +1,9 @@
 include: package:lints/recommended.yaml
+
+analyzer:
+  plugins:
+    - simple_linter
+
 linting:
   rules:
     - test-rule
