@@ -1,5 +1,5 @@
 name: linting_example
-description: linting example
+description: my custom linter(cli only)
 version: 1.2.1
 publish_to: none
 
@@ -11,11 +11,8 @@ dependencies:
     git:
       url: git@github.com:hisaichi5518/dart-linting.git
       path: .
-      ref: analyze-plugin
+      ref: main
 
 dev_dependencies:
   test: ^1.17.0
   lints: ^1.0.1
-
-executables:
-  linter:
