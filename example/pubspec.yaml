@@ -1,5 +1,5 @@
-name: linting_example
-description: my custom linter(cli only)
+name: simple_linter
+description: my custom linter
 version: 0.0.1
 publish_to: none
 
@@ -16,3 +16,6 @@ dependencies:
 dev_dependencies:
   test: ^1.17.0
   lints: ^1.0.1
+
+executables:
+  simple_linter:
