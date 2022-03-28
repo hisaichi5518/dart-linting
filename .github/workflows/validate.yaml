@@ -15,8 +15,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: git config --global url."https://$GITHUB_TOKEN:@github.com/hisaichi5518/".insteadOf git@github.com:hisaichi5518/
-      - run: flutter pub get
-      - run: flutter analyze .
+      - run: dart pub get && dart analyze lib test
+      - run: cd examples/simple_linter && dart pub get && dart analyze lib
+      - run: cd examples/simple_linter_user && dart pub get && dart analyze lib
 
   format:
     runs-on: ubuntu-latest
