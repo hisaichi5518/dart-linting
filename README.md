@@ -29,6 +29,7 @@ The complete code can be found at [examples](https://github.com/hisaichi5518/dar
 - [ ] auto-fix command for CLI
 - [ ] auto-fix command for analyzer_plugin
 - [ ] linting create .
+- [ ] documents
 
 ## Release
 
