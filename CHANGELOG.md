@@ -1,9 +1,14 @@
+## 1.3.1
+
+* Fix validate (#21) @hisaichi5518
+* Fix example (#20) @hisaichi5518
+
 ## 1.3.0
 
 * Fix readme (#18) @hisaichi5518
 * Add examples (#17) @hisaichi5518
 * Remove deprecated_member_use (#16) @hisaichi5518
-* Remove freezed (#15) @hisaihi5518
+* Remove freezed (#15) @hisaichi5518
 
 ## 1.2.1
 
