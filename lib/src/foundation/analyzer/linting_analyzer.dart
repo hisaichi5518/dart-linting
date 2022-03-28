@@ -14,9 +14,7 @@ class LintingAnalyzer {
     ResolvedUnitResult resolvedUnitResult, {
     required String? filePath,
   }) async {
-    // ignore: deprecated_member_use
-    if (resolvedUnitResult.state != ResultState.VALID ||
-        filePath == null ||
+    if (filePath == null ||
         !resolvedUnitResult.path.endsWith('.dart') ||
         _isExcluded(resolvedUnitResult.path, config.excludePatterns)) {
       // TODO: log?
