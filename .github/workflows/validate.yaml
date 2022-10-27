@@ -45,7 +45,7 @@ jobs:
           ignore: "*.freezed.dart,*.g.dart"
       - run: dart pub global activate coverage
       - run: dart test --coverage="coverage"
-      - run: format_coverage --lcov --in=coverage --out=coverage/coverage.lcov --packages=.packages --report-on=lib
+      - run: format_coverage --lcov --in=coverage --out=coverage/coverage.lcov --report-on=lib
       - uses: codecov/codecov-action@v2
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
