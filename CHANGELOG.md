@@ -1,3 +1,8 @@
+## 1.4.0
+
+* Move test to dev_dependencies(#23)
+* Remove .packages(#24)
+
 ## 1.3.1
 
 * Fix validate (#21) @hisaichi5518
