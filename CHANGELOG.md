@@ -1,7 +1,8 @@
 ## 1.4.0
 
-* Move test to dev_dependencies(#23)
-* Remove .packages(#24)
+* Move test to dev_dependencies #23
+* Remove .packages #24
+* Rollback test and Loosen analyzer version spec #25
 
 ## 1.3.1
 
