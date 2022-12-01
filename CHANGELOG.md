@@ -1,3 +1,7 @@
+## 1.5.0
+
+* [Loosen analyzer_plugin's version specifier #27](https://github.com/hisaichi5518/dart-linting/pull/27)
+
 ## 1.4.0
 
 * Move test to dev_dependencies #23
