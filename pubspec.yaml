@@ -8,7 +8,7 @@ environment:
 
 dependencies:
   analyzer: ">=2.7.0 <6.0.0"
-  analyzer_plugin: ^0.8.0
+  analyzer_plugin: ">=0.8.0 <1.0.0"
   args: ^2.3.0
   path: ^1.8.0
   source_span: ^1.8.1
